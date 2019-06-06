@@ -83,11 +83,9 @@ public class MainController implements Initializable {
 		System.out.println("#Activation new Book Copy Menu Action");
 
 		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "NewBookCopy.fxml").toUri().toURL());
-		// centralPane = new AnchorPane();
+		
 		centralPane.getChildren().setAll(pane);
-		// content.getChildren().setAll(FXMLLoader.load("vista2.fxml"));
-		// centralPan
-
+		
 	}
 
 	@FXML
@@ -162,15 +160,15 @@ public class MainController implements Initializable {
 		Date date = new Date();
 		Text text_1 = new Text("" + message + "; ");
 		text_1.setFill(Color.RED);
-		// set font of the text
+		
 		text_1.setFont(Font.font("Verdana", 15));
 
 		Text text_2 = new Text(sumMessage + "\n");
 		text_2.setFill(Color.WHITESMOKE);
-		// set font of the text
+		
 		text_2.setFont(Font.font("Verdana", 15));
 		System.out.println(message);
-		// logArea.getChildren().addAll(text_1,text_2);
+		
 		logArea.setText("" + message + "\n" + sumMessage + "\n" + logArea.getText());
 	}
 

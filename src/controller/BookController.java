@@ -66,8 +66,6 @@ public class BookController  implements Initializable{
 		tableBook = new TableView<>();
 		titleNameColum = new TableColumn<>();
 		isbnNameColum = new TableColumn<>();
-//		autorNameColum = new TableColumn<>();
-//		copyNameColum = new TableColumn<>();
 		
 		autorOfListBookPage = new Label();
 		numCopyOfListBookPage = new Label();
@@ -83,7 +81,7 @@ public class BookController  implements Initializable{
 		List<Book> result2 = hmapBook.values().stream()
 				.collect(Collectors.toList());
 		
-		//List<String> list = result2.stream().;
+		
 		List<String> list = 
 				hmapBook.values().stream()
 	              .map(b -> b.getTitle()+":"+b.getIsbn())
@@ -91,12 +89,10 @@ public class BookController  implements Initializable{
 		
 		listBooks.getItems().clear();
 		listBooks.getItems().addAll(list);
-		//MainController.mainController.messageConsole("#List of Books : "+list);
 		
 		titleNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("title"));
 		isbnNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
-//		autorNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
-//		copyNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
+
 		tableBook.setItems(FXCollections.observableArrayList(result2));
 		tableBook.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 		    if (newSelection != null) {
@@ -107,7 +103,7 @@ public class BookController  implements Initializable{
 		    	for (Author author : listAuthor) {
 		    		authors +=author.getFirstName()+" "+author.getLastName()+" ";
 				}
-		    	//b.getAuthors().forEach(item-> autor=autor+item.getFirstName()+" "+item.getLastName());
+
 		    	autorOfListBookPage.setText(authors);
 		    	numCopyOfListBookPage.setText(String.valueOf(b.getNumCopies()));
 		    }
@@ -135,11 +131,11 @@ public class BookController  implements Initializable{
 		Book book = opBook.get();
 		for(Integer i=1; i<=Integer.parseInt(numCopyBook.getText());i++)
 			book.addCopy();
-		//daFacade.updateBook(book);
+
 		daFacade.saveBook(book);
 		numCopyBook.setText("");
 		labelMessageNewBookCopyPage.setText("Message : New copies recorded");
-		//MainController.mainController.listBookMenuAction(null);
+
 	}
 	
 	@FXML

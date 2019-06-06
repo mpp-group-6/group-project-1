@@ -51,21 +51,15 @@ public class Main extends BaseWindow implements Initializable {
 	public void start(Stage primaryStage) {
 		try {
 
-			// BorderPane root =
-			// (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 			Parent root = FXMLLoader.load(Paths.get(fxmlFolder, "Login.fxml").toUri().toURL());
-			// Paths.get(fxmlFolder, "Login.fxml").toString()
 			Scene scene = new Scene(root);
 
-			// button = new Button("Login");
-			// button.setOnAction(e -> System.out.println("Login "));
 
-			// scene.getStylesheets().add(getClass().getResource("resources/bootstrap3.css").toExternalForm());
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
 
 			primaryStage.show();
-			//
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,20 +76,10 @@ public class Main extends BaseWindow implements Initializable {
 			try {
 				Node node = (Node) event.getSource();
 				node.getScene().getWindow().hide();
-				// System.out.println(getClass().getResource("views/Main.fxml"));
-				// FXMLLoader loader = new FXMLLoader();
-				// loader.setLocation(getClass().getResource("view/Main.fxml"));
-				// Parent XD = loader.load();
-				//
-				// MainController stage2Controller = (MainController)loader.getController();
+
 				MainController controller = new MainController();
 				controller.loadView();
-				// stage2Controller.loadView();
-				// Show the scene containing the root layout.
-				// Scene scene = new Scene(XD);
-				// Stage stage = new Stage();
-				// stage.setScene(scene);
-				// stage.show();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -104,7 +88,6 @@ public class Main extends BaseWindow implements Initializable {
 				messageError.setText("Error Connexion: Incorrect Password");
 			}else messageError.setText("Error Connexion: Fill Both User Name and Password");
 		}
-		// primaryStage.hide();
 	}
 
 	@FXML
