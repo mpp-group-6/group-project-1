@@ -1,12 +1,15 @@
 package business;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckoutRecord
+public class CheckoutRecord implements Serializable 
 {
+
+    private static final long serialVersionUID = -4086466632868230528L;
+
     private final LibraryMember member;
     
     private List<CheckoutEntry> checkoutEntries;
@@ -22,5 +25,10 @@ public class CheckoutRecord
     
     public List<CheckoutEntry> getCheckoutEntries() {
         return checkoutEntries;
+    }
+
+    public LibraryMember getMember()
+    {
+        return member;
     }
 }

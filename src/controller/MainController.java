@@ -24,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ui.CheckoutWindow;
 
 public class MainController implements Initializable {
 	public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), "resources", "fxml").toString();
@@ -124,6 +125,7 @@ public class MainController implements Initializable {
 	private void checkOutBookMenuAction(ActionEvent event) {
 		labelMenu.setText("Check-Out Book");
 		System.out.println("Activation Check-Out Book Menu Action");
+		centralPane.getChildren().setAll(CheckoutWindow.getView());
 		messageConsole("#Activation Check-Out Book Menu Action");
 	}
 
