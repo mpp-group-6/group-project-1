@@ -1,9 +1,9 @@
 package ui;
 	
-import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Optional;
 
-import javafx.application.Application;
+import controller.MainController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -17,13 +17,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 //import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 
-public class Main extends Application {
+public class Main extends BaseWindow {
 	Stage primaryStage;
 	@FXML
 	TextField userName;
@@ -37,7 +36,8 @@ public class Main extends Application {
 			
 			//BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 			Parent root =
-					FXMLLoader.load(getClass().getResource("Login.fxml"));
+					FXMLLoader.load(Paths.get(fxmlFolder, "Login.fxml").toUri().toURL());
+			//Paths.get(fxmlFolder, "Login.fxml").toString()
 			Scene scene = new Scene(root);
 			
 //			button = new Button("Login");
