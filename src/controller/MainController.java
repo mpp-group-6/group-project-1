@@ -99,12 +99,7 @@ public class MainController implements Initializable {
 		centralPane.getChildren().setAll(pane);
 	}
 
-	@FXML
-	private void viewBooksMenuAction(ActionEvent event) {
-		labelMenu.setText("List Of Books recorded");
-		System.out.println("Activation view Books Menu Action");
-		messageConsole("#Activation view Books Menu Action");
-	}
+	
 
 	@FXML
 	private void listMembersMenuAction(ActionEvent event) {
