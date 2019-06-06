@@ -6,6 +6,6 @@ This repository holds the source code for group 6.
 
 1. Emmanuel Cadet (ecades@mum.edu)
 
-2. Pogo
+2. Romuald Pogo (rkamou@mum.edu)
 
 3. Anthony Anyanwu (acanyanwu@mum.edu) 
