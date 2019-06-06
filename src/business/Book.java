@@ -1,6 +1,7 @@
 package business;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -109,12 +110,6 @@ final public class Book implements Serializable {
 		    throw new BookCopyNotAvailable();
 	}
 	
-    public void makeUnavailable(BookCopy bookCopy) throws BookCopyNotAvailable {
-        if(bookCopy.isAvailable() == false)
-            throw new BookCopyNotAvailable();
-        bookCopy.changeAvailability();
-    }
-	
 	public BookCopy getCopy(int copyNum) throws BookCopyDoesNotExist {
 		for(BookCopy c : copies) {
 			if(copyNum == c.getCopyNum()) {
@@ -126,6 +121,16 @@ final public class Book implements Serializable {
 	
 	public int getMaxCheckoutLength() {
 		return maxCheckoutLength;
+	}
+	
+	public CheckoutRecord checkout(LibraryMember member) throws BookCopyNotAvailable {
+	    BookCopy bookCopy = getNextAvailableCopy();
+	    CheckoutRecord checkoutRecord = member.getCheckoutRecord();
+        ZonedDateTime checkoutDate = ZonedDateTime.now();
+        ZonedDateTime dueDate = checkoutDate.plusDays(getMaxCheckoutLength());
+        checkoutRecord.addCheckoutEntry(bookCopy, checkoutDate, dueDate);
+        bookCopy.changeAvailability();
+	    return checkoutRecord;
 	}
 
 	

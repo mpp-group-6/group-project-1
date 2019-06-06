@@ -1,6 +1,7 @@
 package business;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 
@@ -16,11 +17,11 @@ final public class CheckoutEntry
     
     private final BookCopy checkoutItem;
     
-    private final LocalDateTime dueDate;
+    private final ZonedDateTime dueDate;
     
-    private final LocalDateTime checkoutDate;
+    private final ZonedDateTime checkoutDate;
     
-    CheckoutEntry(BookCopy checkoutItem, LocalDateTime dueDate, LocalDateTime checkoutDate) {
+    CheckoutEntry(BookCopy checkoutItem, ZonedDateTime dueDate, ZonedDateTime checkoutDate) {
         this.checkoutDate = checkoutDate;
         this.checkoutItem = checkoutItem;
         this.dueDate = dueDate;
@@ -32,12 +33,12 @@ final public class CheckoutEntry
         return checkoutItem;
     }
 
-    public LocalDateTime getDueDate()
+    public ZonedDateTime getDueDate()
     {
         return dueDate;
     }
 
-    public LocalDateTime getCheckoutDate()
+    public ZonedDateTime getCheckoutDate()
     {
         return checkoutDate;
     }

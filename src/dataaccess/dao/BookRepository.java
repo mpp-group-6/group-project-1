@@ -4,7 +4,7 @@ import java.util.Map;
 import business.Book;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
-import exception.LibraryMemberNotFound;
+import dataaccess.exception.BookNotFound;
 
 public class BookRepository
 {
@@ -17,11 +17,11 @@ public class BookRepository
         booksMap = dbAccess.readBooksMap();
     }
     
-    public static Book getMember(String memberId) throws LibraryMemberNotFound {
-        Book member = booksMap.get(memberId);
-        if(member == null)
-            throw new LibraryMemberNotFound();
-        return member;
+    public static Book getBook(String ISBN) throws BookNotFound {
+        Book book = booksMap.get(ISBN);
+        if(book == null)
+            throw new BookNotFound();
+        return book;
     }
     
     public void updateBook(Book book) {
