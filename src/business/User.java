@@ -13,6 +13,7 @@ final public class User implements Serializable {
 	private String id;
 	
 	private String password;
+	
 	private List<Permission> permissions = new ArrayList<Permission>();
 	
 	public User(String id, String pass, List<Permission>  permissions) {

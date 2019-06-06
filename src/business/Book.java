@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import exception.BookCopyDoesNotExist;
+import exception.BookCopyNotAvailable;
+
 /**
  *
  */
@@ -96,21 +99,31 @@ final public class Book implements Serializable {
 		return isbn;
 	}
 	
-	public BookCopy getNextAvailableCopy() {	
+	public BookCopy getNextAvailableCopy() throws BookCopyNotAvailable {	
 		Optional<BookCopy> optional 
 			= Arrays.stream(copies)
 			        .filter(x -> x.isAvailable()).findFirst();
-		return optional.isPresent() ? optional.get() : null;
+		if(optional.isPresent()) 
+		    return optional.get();
+		else
+		    throw new BookCopyNotAvailable();
 	}
 	
-	public BookCopy getCopy(int copyNum) {
+    public void makeUnavailable(BookCopy bookCopy) throws BookCopyNotAvailable {
+        if(bookCopy.isAvailable() == false)
+            throw new BookCopyNotAvailable();
+        bookCopy.changeAvailability();
+    }
+	
+	public BookCopy getCopy(int copyNum) throws BookCopyDoesNotExist {
 		for(BookCopy c : copies) {
 			if(copyNum == c.getCopyNum()) {
 				return c;
 			}
 		}
-		return null;
+		throw new BookCopyDoesNotExist();
 	}
+	
 	public int getMaxCheckoutLength() {
 		return maxCheckoutLength;
 	}

@@ -3,7 +3,6 @@ package dataaccess;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import business.Address;
 import business.Author;
 import business.Book;
@@ -71,6 +70,7 @@ public class TestData {
 		td.userData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
+		System.out.println(da.readMemberMap());
 		System.out.println(da.readUserMap());
 	}
 	///create books
@@ -103,6 +103,9 @@ public class TestData {
 		
 		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));
 		members.add(libraryMember);
+		
+		libraryMember = new LibraryMember("1005", "Sandra", "Thomas", "641-445-2123", addresses.get(0));          // author who happen to be a library member
+        members.add(libraryMember);
 		
 		DataAccessFacade.loadMemberMap(members);
 		

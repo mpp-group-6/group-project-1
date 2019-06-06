@@ -3,11 +3,14 @@ package business;
 import java.io.Serializable;
 
 final public class LibraryMember extends Person implements Serializable {
-	private String memberId;
+	private final String memberId;
+	
+	private final CheckoutRecord checkoutRecord;
 	
 	public LibraryMember(String memberId, String fname, String lname, String tel,Address add) {
 		super(fname,lname, tel, add);
 		this.memberId = memberId;		
+		checkoutRecord = new CheckoutRecord();        // library member with zero checkout entries
 	}
 	
 	
@@ -15,6 +18,9 @@ final public class LibraryMember extends Person implements Serializable {
 		return memberId;
 	}
 
+	public CheckoutRecord getCheckoutRecord() {
+	    return checkoutRecord;
+	}
 	
 	
 	@Override

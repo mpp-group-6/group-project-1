@@ -9,12 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
-
 import business.Book;
-import business.BookCopy;
 import business.LibraryMember;
 import business.User;
-import dataaccess.DataAccessFacade.StorageType;
 
 
 public class DataAccessFacade implements DataAccess {
@@ -29,11 +26,16 @@ public class DataAccessFacade implements DataAccess {
 	
 	//implement: other save operations
 	public void saveNewMember(LibraryMember member) {
-		HashMap<String, LibraryMember> mems = readMemberMap();
-		String memberId = member.getMemberId();
-		mems.put(memberId, member);
-		saveToStorage(StorageType.MEMBERS, mems);	
+		updateMember(member);	
 	}
+	
+	   //implement: other save operations
+    public void updateMember(LibraryMember member) {
+        HashMap<String, LibraryMember> mems = readMemberMap();
+        String memberId = member.getMemberId();
+        mems.put(memberId, member);
+        saveToStorage(StorageType.MEMBERS, mems);   
+    }
 	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
@@ -148,5 +150,37 @@ public class DataAccessFacade implements DataAccess {
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
 	}
+
+
+
+    @Override
+    public void saveBook(Book book)
+    {
+       updateBook(book);
+    }
+
+    @Override
+    public void updateBook(Book book)
+    {
+        HashMap<String, Book> books = readBooksMap();
+        String bookId = book.getIsbn();
+        books.put(bookId, book);
+        saveToStorage(StorageType.BOOKS, book);  
+    }
+
+    @Override
+    public void saveUser(User user)
+    {
+        updateUser(user);
+    }
+
+    @Override
+    public void updateUser(User user)
+    {
+        HashMap<String, User> users = readUserMap();
+        users.put(user.getId(), user);
+        saveToStorage(StorageType.USERS, user); 
+    }
+
 	
 }
