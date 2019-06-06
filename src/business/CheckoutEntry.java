@@ -1,5 +1,6 @@
 package business;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -11,8 +12,10 @@ import java.util.UUID;
  * This class holds checkout Entry information.
  * It has been make immutatable since checkout entry is not expected to be modified after it has been created.
  */
-final public class CheckoutEntry
+final public class CheckoutEntry implements Serializable 
 {
+    private static final long serialVersionUID = 4018230856770540811L;
+
     private final String id;
     
     private final BookCopy checkoutItem;
