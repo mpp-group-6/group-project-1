@@ -3,13 +3,16 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import business.Author;
 import business.Book;
 import business.BookCopy;
 import dataaccess.DataAccessFacade;
@@ -19,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,12 +45,19 @@ public class BookController  implements Initializable{
 	TableColumn<Book, String> titleNameColum;
 	@FXML
 	TableColumn<Book, String> isbnNameColum;
+//	@FXML
+//	TableColumn<Book, String> autorNameColum;
+//	@FXML
+//	TableColumn<Book, String> copyNameColum;
 	@FXML
-	TableColumn<Book, String> autorNameColum;
-	@FXML
-	TableColumn<Book, String> copyNameColum;
+	Label autorOfListBookPage;
+	@FXML 
+	Label numCopyOfListBookPage;
 	@FXML
 	TextField numCopyBook;
+	@FXML
+	Label labelMessageNewBookCopyPage;
+
 	DataAccessFacade daFacade = new DataAccessFacade();
 	public BookController() {
 		super();
@@ -55,8 +66,14 @@ public class BookController  implements Initializable{
 		tableBook = new TableView<>();
 		titleNameColum = new TableColumn<>();
 		isbnNameColum = new TableColumn<>();
-		autorNameColum = new TableColumn<>();
-		copyNameColum = new TableColumn<>();
+//		autorNameColum = new TableColumn<>();
+//		copyNameColum = new TableColumn<>();
+		
+		autorOfListBookPage = new Label();
+		numCopyOfListBookPage = new Label();
+		
+		numCopyBook = new TextField();
+		labelMessageNewBookCopyPage = new Label();
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -74,13 +91,34 @@ public class BookController  implements Initializable{
 		
 		listBooks.getItems().clear();
 		listBooks.getItems().addAll(list);
-		MainController.mainController.messageConsole("#List of Books : "+list);
+		//MainController.mainController.messageConsole("#List of Books : "+list);
 		
 		titleNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("title"));
 		isbnNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
-		autorNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
-		copyNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
+//		autorNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
+//		copyNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
 		tableBook.setItems(FXCollections.observableArrayList(result2));
+		tableBook.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+		    if (newSelection != null) {
+		    	Book b = tableBook.getSelectionModel().getSelectedItem();
+		    	MainController.mainController.messageConsole("#Selection book : "+b.getTitle());
+		    	List<Author> listAuthor = b.getAuthors();
+		    	String authors = "";
+		    	for (Author author : listAuthor) {
+		    		authors +=author.getFirstName()+" "+author.getLastName()+" ";
+				}
+		    	//b.getAuthors().forEach(item-> autor=autor+item.getFirstName()+" "+item.getLastName());
+		    	autorOfListBookPage.setText(authors);
+		    	numCopyOfListBookPage.setText(String.valueOf(b.getNumCopies()));
+		    }
+		});
+		
+		autorOfListBookPage.setText("");
+		numCopyOfListBookPage.setText("");
+		
+		numCopyBook.setText("");
+		labelMessageNewBookCopyPage.setText("");
+		
 	}
 
 	@FXML
@@ -89,9 +127,19 @@ public class BookController  implements Initializable{
 	}
 	
 	@FXML
-	private void saveBookCopy(ActionEvent event) {
+	private void saveBookCopy(ActionEvent event) throws Exception {
 		MainController.mainController.messageConsole("#Save of The Copy of The Book : "+listBooks.getValue());
 		MainController.mainController.messageConsole("Num Copy : "+numCopyBook.getText());
+		String[] data = listBooks.getValue().trim().split(":");
+		Optional<Book> opBook = daFacade.readBooksMap().values().stream().filter(e -> e.getIsbn().equals(data[1])).findFirst();
+		Book book = opBook.get();
+		for(Integer i=1; i<=Integer.parseInt(numCopyBook.getText());i++)
+			book.addCopy();
+		//daFacade.updateBook(book);
+		daFacade.saveBook(book);
+		numCopyBook.setText("");
+		labelMessageNewBookCopyPage.setText("Message : New copies recorded");
+		//MainController.mainController.listBookMenuAction(null);
 	}
 	
 	@FXML

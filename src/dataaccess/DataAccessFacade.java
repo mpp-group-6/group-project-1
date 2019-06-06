@@ -165,7 +165,7 @@ public class DataAccessFacade implements DataAccess {
         HashMap<String, Book> books = readBooksMap();
         String bookId = book.getIsbn();
         books.put(bookId, book);
-        saveToStorage(StorageType.BOOKS, book);  
+        saveToStorage(StorageType.BOOKS, books);  
     }
 
     @Override
