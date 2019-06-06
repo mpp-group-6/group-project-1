@@ -179,7 +179,7 @@ public class DataAccessFacade implements DataAccess {
     {
         HashMap<String, User> users = readUserMap();
         users.put(user.getId(), user);
-        saveToStorage(StorageType.USERS, user); 
+        saveToStorage(StorageType.USERS, users); 
     }
 
 	

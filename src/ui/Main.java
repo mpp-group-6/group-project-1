@@ -1,16 +1,15 @@
 package ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import com.sun.tracing.dtrace.ModuleName;
-
 import controller.ControllerInterface;
 import controller.MainController;
 import controller.SystemController;
-import exception.LoginException;
+import dataaccess.exception.InvalidCredentials;
+import dataaccess.exception.UserNotFound;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -22,7 +21,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
@@ -66,28 +64,25 @@ public class Main extends BaseWindow implements Initializable {
 	}
 
 	@FXML
-	public void login(ActionEvent event) {
+	public void login(ActionEvent event) throws IOException {
 		System.out.println("Login " + userName.getText() + "; ");
 
 		ControllerInterface c = new SystemController();
-
-		int connexion = c.login(userName.getText().trim(), password.getText().trim());
-		if (connexion == 1) {
-			try {
-				Node node = (Node) event.getSource();
-				node.getScene().getWindow().hide();
-
-				MainController controller = new MainController();
-				controller.loadView();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			if (connexion == 2) {
-				messageError.setText("Error Connexion: Incorrect Password");
-			}else messageError.setText("Error Connexion: Fill Both User Name and Password");
+		
+		try {
+		    c.login(userName.getText().trim(), password.getText().trim());
+		    Node node = (Node) event.getSource();
+            node.getScene().getWindow().hide();
+            MainController controller = new MainController();
+            controller.loadView();
 		}
+		catch(InvalidCredentials ex) {
+		    messageError.setText("Invalid credentials");
+		}
+		catch(UserNotFound ex) {
+            messageError.setText("Invalid credentials");
+        }
+		
 	}
 
 	@FXML
