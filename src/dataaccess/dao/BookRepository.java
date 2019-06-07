@@ -15,7 +15,7 @@ public class BookRepository extends ObjectRepository
         return book;
     }
     
-    public void updateBook(Book book) {
+    public static void updateBook(Book book) {
         dbAccess.updateBook(book);
     }
 }

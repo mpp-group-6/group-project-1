@@ -30,6 +30,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 public class Main extends BaseWindow implements Initializable {
+	
+	
 	Stage primaryStage;
 	@FXML
 	TextField userName;
@@ -51,7 +53,6 @@ public class Main extends BaseWindow implements Initializable {
 
 			Parent root = FXMLLoader.load(Paths.get(fxmlFolder, "Login.fxml").toUri().toURL());
 			Scene scene = new Scene(root);
-
 
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
@@ -101,7 +102,7 @@ public class Main extends BaseWindow implements Initializable {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		launch(args);
 	}
 

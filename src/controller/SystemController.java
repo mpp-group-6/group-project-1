@@ -37,6 +37,13 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
+
+	@Override
+	public boolean saveLibraryMember(String fName, String lName, String phone, String street, String city, String state,
+			String zip) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }

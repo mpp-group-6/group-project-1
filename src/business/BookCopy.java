@@ -1,6 +1,7 @@
 package business;
 
 import java.io.Serializable;
+import java.util.stream.Collectors;
 
 /**
  * Immutable class
@@ -46,6 +47,12 @@ final public class BookCopy implements Serializable {
 		if(!(ob instanceof BookCopy)) return false;
 		BookCopy copy = (BookCopy)ob;
 		return copy.book.getIsbn().equals(book.getIsbn()) && copy.copyNum == copyNum;
+	}
+	
+	@Override
+	public String toString() {
+	    String authorsList = String.join(",", book.getAuthors().stream().map(author->author.toString()).collect(Collectors.toList()));
+	    return String.format("%s by %s, copy id: %s", book.getTitle(), authorsList, copyNum);
 	}
 	
 }
