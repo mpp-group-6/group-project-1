@@ -32,12 +32,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ListAllMembers implements Initializable{
-	public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), 
-	        "resources", "fxml").toString();
+public class ListAllMembers extends BaseWindow implements Initializable{
+	//public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), 
+	  //      "resources", "fxml").toString();
 	
 	@FXML
 	TableView<LibraryMember> tabMember;
+	
 	
 	@FXML
 	TableColumn<LibraryMember, String> memberId;	
@@ -63,7 +64,7 @@ public class ListAllMembers implements Initializable{
 	@FXML
 	public void testBotton() {
 		
-		t_street=new TableColumn<Address, String>();
+		
 		
 		DataAccess da=new DataAccessFacade();
 		HashMap<String,LibraryMember> hash=da.readMemberMap();
@@ -98,7 +99,7 @@ public class ListAllMembers implements Initializable{
 		isInitialized = val;
 	}	
 		
-	public void init() {
+	public void start(Stage stage) {
 		
 		
 		
@@ -120,7 +121,7 @@ public class ListAllMembers implements Initializable{
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-t_street=new TableColumn<Address, String>();
+		t_street=new TableColumn<Address, String>();
 		
 		DataAccess da=new DataAccessFacade();
 		HashMap<String,LibraryMember> hash=da.readMemberMap();

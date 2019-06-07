@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.CheckoutWindow;
+
 
 public class MainController implements Initializable {
     
@@ -90,6 +92,7 @@ public class MainController implements Initializable {
 		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "NewBookCopy.fxml").toUri().toURL());
 		
 		centralPane.getChildren().setAll(pane);
+
 	}
 
 	@FXML
@@ -132,7 +135,10 @@ public class MainController implements Initializable {
 	}
 
 	@FXML
-	private void registerMembersMenuAction(ActionEvent event) {
+	private void registerMembersMenuAction(ActionEvent event) throws MalformedURLException, IOException {
+		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "AddMember.fxml").toUri().toURL());
+		
+		centralPane.getChildren().setAll(pane);
 		labelMenu.setText("Register New Member");
 		System.out.println("Activation Register New Member Menu Action");
 		messageConsole("#Activation Register New Member Menu Action");
@@ -156,7 +162,6 @@ public class MainController implements Initializable {
 		loader.setLocation(Paths.get(fxmlFolder, "Main.fxml").toUri().toURL());
 		Parent XD = loader.load();
 
-        // Show the scene containing the root layout.
         Scene scene = new Scene(XD);
         Stage stage = new Stage();
 //        scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());

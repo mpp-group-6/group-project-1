@@ -19,9 +19,10 @@ public class DataAccessFacade implements DataAccess {
 	enum StorageType {
 		BOOKS, MEMBERS, USERS;
 	}
-	
-	public static final String OUTPUT_DIR = Paths.get(System.getProperty("user.dir"), 
-	    "resources", "dataaccess", "storage").toString();
+
+	public static final String OUTPUT_DIR =  Paths.get(System.getProperty("user.dir"), 
+	      "resources", "dataaccess","storage").toString();
+
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 	
 	//implement: other save operations

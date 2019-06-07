@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="325.0" prefWidth="647.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.ListAllMembers">
+<AnchorPane prefHeight="447.0" prefWidth="647.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.ListAllMembers">
   <!-- TODO Add Nodes -->
   <children>
-    <TableView id="tab" fx:id="tabMember" layoutX="2.0" layoutY="7.0" prefHeight="279.0" prefWidth="628.0">
+    <TableView id="tab" fx:id="tabMember" editable="true" layoutX="2.0" layoutY="7.0" prefHeight="426.0" prefWidth="628.0" tableMenuButtonVisible="false">
       <columns>
         <TableColumn prefWidth="75.0" text="MemberId" fx:id="memberId" />
         <TableColumn prefWidth="75.0" text="Firstname" fx:id="firstNa" />

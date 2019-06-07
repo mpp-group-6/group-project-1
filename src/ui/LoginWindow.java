@@ -1,8 +1,12 @@
 package ui;
 
 import java.nio.file.Paths;
+<<<<<<< HEAD
 import controller.ControllerInterface;
 import exception.LoginException;
+=======
+
+>>>>>>> 9249e57a901bada641bc9bc11c0e537d87a634e8
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
