@@ -65,6 +65,8 @@ public class BookController  implements Initializable{
 	Label labelMessageNewBookCopyPage;
 	@FXML
 	ListView listView;
+	@FXML
+	Label numCopyAvOfListBookPage;
 	DataAccessFacade daFacade = new DataAccessFacade();
 	public BookController() {
 		super();
@@ -76,6 +78,7 @@ public class BookController  implements Initializable{
 		
 		autorOfListBookPage = new Label();
 		numCopyOfListBookPage = new Label();
+		numCopyAvOfListBookPage = new Label();
 		
 		numCopyBook = new TextField();
 		labelMessageNewBookCopyPage = new Label();
@@ -115,11 +118,17 @@ public class BookController  implements Initializable{
 
 		    	autorOfListBookPage.setText(authors);
 		    	numCopyOfListBookPage.setText(String.valueOf(b.getNumCopies()));
+		    	
+		    	BookCopy[] copies =  b.getCopies();
+		    	int j=0;
+		    	for(int i=0; i<copies.length; i++) if (copies[i].isAvailable())j++;
+		    	numCopyAvOfListBookPage.setText(String.valueOf(j));
 		    }
 		});
 		
 		autorOfListBookPage.setText("");
 		numCopyOfListBookPage.setText("");
+		numCopyAvOfListBookPage.setText("");
 		
 		numCopyBook.setText("");
 		labelMessageNewBookCopyPage.setText("");
