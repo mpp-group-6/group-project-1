@@ -13,10 +13,6 @@ import dataaccess.exception.UserNotFound;
 public class SystemController implements ControllerInterface {
 	public static List<Permission> currentAuth = null;
 	public static User currentUser = null;
-	private static Integer USER_MATCHED = 1;
-	private static Integer INVALID_INPUT = 0;
-	private static Integer INVALID_CRED = 2;
-	
 	public void login(String userId, String password) throws UserNotFound, InvalidCredentials{
 	    currentUser = UserRepository.getuser(userId, password);
         currentAuth = currentUser.getAuthorization();
