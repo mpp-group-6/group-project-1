@@ -22,7 +22,10 @@ public class DataAccessFacade implements DataAccess {
 		BOOKS, MEMBERS, USERS;
 	}
 	
-	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
+	//public static final String OUTPUT_DIR =  Paths.get(System.getProperty("user.dir"), 
+	 //      "resources", "dataaccess","storage").toString();
+			
+	public static final String OUTPUT_DIR =System.getProperty("user.dir") 
 			+ "\\src\\dataaccess";
 	
 	//public static final String OUTPUT_DIR = Paths.get(System.getProperty("user.dir"), 

@@ -14,11 +14,6 @@ public class CheckoutRecord implements Serializable
 	
 	private static final long serialVersionUID = -4086466632868230528L;
 
-public class CheckoutRecord implements Serializable 
-{
-
-    private static final long serialVersionUID = -4086466632868230528L;
-
     private final LibraryMember member;
     
     private List<CheckoutEntry> checkoutEntries;
