@@ -1,6 +1,6 @@
 package ui;
 
-<<<<<<< HEAD
+
 import java.nio.file.Paths;
 import java.util.function.Function;
 import business.CheckoutRecord;
@@ -12,9 +12,7 @@ import exception.LibraryMemberNotFound;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
-=======
 
->>>>>>> d329b9c2c33bd36b05b61cb7b276226d333c1381
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -24,7 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-<<<<<<< HEAD
+
 import javafx.scene.layout.VBox;
 
 public class CheckoutWindow
@@ -32,14 +30,7 @@ public class CheckoutWindow
     
     @SuppressWarnings("unchecked")
     public static Pane getView(Function<Pane, Boolean> stageChangerFunction) {
-=======
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 
-public class CheckoutWindow
-{
-    public static Pane getView() {
->>>>>>> d329b9c2c33bd36b05b61cb7b276226d333c1381
         GridPane form = new GridPane();
         form.setVgap(20);
         form.setHgap(20);
