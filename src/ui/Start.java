@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import controller.ControllerInterface;
-import controller.SystemController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -98,7 +97,7 @@ public class Start extends Application {
             }
         });			
 							
-		MenuItem bookIds = new MenuItem("All Book Ids");
+		/*MenuItem bookIds = new MenuItem("All Book Ids");
 		bookIds.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -116,9 +115,9 @@ public class Start extends Application {
 				AllBooksWindow.INSTANCE.setData(sb.toString());
 				AllBooksWindow.INSTANCE.show();
             }
-		});
+		});*/
 		
-		MenuItem memberIds = new MenuItem("All Member Ids");
+		/*MenuItem memberIds = new MenuItem("All Member Ids");
 		memberIds.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -138,8 +137,9 @@ public class Start extends Application {
 				AllMembersWindow.INSTANCE.setData(sb.toString());
 				AllMembersWindow.INSTANCE.show();
             }
-		});	
-		optionsMenu.getItems().addAll(login, bookIds, memberIds);
+		});	*/
+		
+		//optionsMenu.getItems().addAll(login, bookIds, memberIds);
 
 		mainMenu.getMenus().addAll(optionsMenu);
 		Scene scene = new Scene(topContainer, 420, 375);

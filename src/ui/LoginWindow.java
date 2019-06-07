@@ -1,6 +1,11 @@
 package ui;
 
 import java.nio.file.Paths;
+<<<<<<< HEAD
+=======
+import controller.ControllerInterface;
+import exception.LoginException;
+>>>>>>> d329b9c2c33bd36b05b61cb7b276226d333c1381
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -72,9 +77,20 @@ public class LoginWindow extends Stage implements LibWindow {
         messageBox.getChildren().add(messageBar);;
         grid.add(messageBox, 1, 6);
         
-        loginBtn.setOnAction(new EventHandler<ActionEvent>() {
+        /*loginBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
+<<<<<<< HEAD
+        		try {
+        			//ControllerInterface c = new SystemController();
+        			//c.login(userTextField.getText().trim(), pwBox.getText().trim());
+        			messageBar.setFill(Start.Colors.green);
+             	    messageBar.setText("Login successful");
+        		} catch(LoginException ex) {
+        			messageBar.setFill(Start.Colors.red);
+        			messageBar.setText("Error! " + ex.getMessage());
+        		}
+=======
 //        		try {
 //        			ControllerInterface c = new SystemController();
 //        			c.login(userTextField.getText().trim(), pwBox.getText().trim());
@@ -84,9 +100,10 @@ public class LoginWindow extends Stage implements LibWindow {
 //        			messageBar.setFill(Start.Colors.red);
 //        			messageBar.setText("Error! " + ex.getMessage());
 //        		}
+>>>>>>> 323fbd4200ace02ea34962b1541b8e51b84cf1ca
         	   
         	}
-        });
+        });*/
 
         Button backBtn = new Button("<= Back to Main");
         backBtn.setOnAction(new EventHandler<ActionEvent>() {
