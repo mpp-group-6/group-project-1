@@ -34,6 +34,7 @@ import ui.CheckoutWindow;
 public class MainController implements Initializable {
     
 	public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), "resources", "fxml").toString();
+	public static final String cssFolder = Paths.get(System.getProperty("user.dir"), "resources", "ui", "css").toString();
 	public static MainController mainController;
 	@FXML
 	Label labelMenu;
@@ -164,7 +165,7 @@ public class MainController implements Initializable {
 
         Scene scene = new Scene(XD);
         Stage stage = new Stage();
-     scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
+     scene.getStylesheets().add(Paths.get(cssFolder, "addMember.css").toString());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
