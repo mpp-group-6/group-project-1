@@ -54,12 +54,6 @@ public class Main extends BaseWindow implements Initializable {
 			Parent root = FXMLLoader.load(Paths.get(fxmlFolder, "Login.fxml").toUri().toURL());
 			Scene scene = new Scene(root);
 
-			
-			//scene.getStylesheets().add(getClass().getResource("resources/bootstrap3.css").toExternalForm());
-
-
-
-
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
 

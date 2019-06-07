@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -16,12 +12,7 @@ import java.util.ResourceBundle;
 import business.LibraryMember;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
-import dataaccess.dao.LibraryMemberRepository;
-
-import java.util.List;
-import java.util.ResourceBundle;
 import business.value.Permission;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,10 +28,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import ui.AllMembersWindow;
-import ui.ListAllMembers;
-
 import ui.CheckoutWindow;
 
 
@@ -106,10 +93,6 @@ public class MainController implements Initializable {
 		
 		centralPane.getChildren().setAll(pane);
 
-		//content.getChildren().setAll(FXMLLoader.load("vista2.fxml"));
-//		centralPan		
-
-
 	}
 
 	@FXML
@@ -151,14 +134,11 @@ public class MainController implements Initializable {
 				
 	}
 
-
-
 	@FXML
 	private void registerMembersMenuAction(ActionEvent event) throws MalformedURLException, IOException {
 		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "AddMember.fxml").toUri().toURL());
 		
 		centralPane.getChildren().setAll(pane);
-
 		labelMenu.setText("Register New Member");
 		System.out.println("Activation Register New Member Menu Action");
 		messageConsole("#Activation Register New Member Menu Action");
@@ -182,16 +162,12 @@ public class MainController implements Initializable {
 		loader.setLocation(Paths.get(fxmlFolder, "Main.fxml").toUri().toURL());
 		Parent XD = loader.load();
 
-
-        // Show the scene containing the root layout.
         Scene scene = new Scene(XD);
         Stage stage = new Stage();
-        scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-		
-
 	}
 
 	public void messageConsole(String message) {
