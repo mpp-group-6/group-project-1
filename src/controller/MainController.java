@@ -3,10 +3,6 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -15,12 +11,7 @@ import java.util.ResourceBundle;
 import business.LibraryMember;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
-import dataaccess.dao.LibraryMemberRepository;
-=======
-import java.util.List;
-import java.util.ResourceBundle;
 import business.value.Permission;
->>>>>>> 323fbd4200ace02ea34962b1541b8e51b84cf1ca
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,12 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-import ui.AllMembersWindow;
-import ui.ListAllMembers;
-=======
 import ui.CheckoutWindow;
->>>>>>> 323fbd4200ace02ea34962b1541b8e51b84cf1ca
 
 public class MainController implements Initializable {
     
@@ -104,12 +90,6 @@ public class MainController implements Initializable {
 		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "NewBookCopy.fxml").toUri().toURL());
 		
 		centralPane.getChildren().setAll(pane);
-<<<<<<< HEAD
-		//content.getChildren().setAll(FXMLLoader.load("vista2.fxml"));
-//		centralPan		
-=======
-		
->>>>>>> 323fbd4200ace02ea34962b1541b8e51b84cf1ca
 	}
 
 	@FXML
@@ -126,7 +106,6 @@ public class MainController implements Initializable {
 	
 
 	@FXML
-<<<<<<< HEAD
 	private void viewBooksMenuAction(ActionEvent event){
 		labelMenu.setText("List Of Books recorded");
 		System.out.println("Activation view Books Menu Action");
@@ -152,16 +131,8 @@ public class MainController implements Initializable {
 				
 	}
 
-
-	private void listMembersMenuAction(ActionEvent event) {
-		labelMenu.setText("List Of Members recorded");
-		System.out.println("Activation view Members Menu Action");
-		messageConsole("#Activation view Members Menu Action");
-	}
-
 	@FXML
 	private void registerMembersMenuAction(ActionEvent event) {
->>>>>>> 323fbd4200ace02ea34962b1541b8e51b84cf1ca
 		labelMenu.setText("Register New Member");
 		System.out.println("Activation Register New Member Menu Action");
 		messageConsole("#Activation Register New Member Menu Action");
@@ -185,22 +156,13 @@ public class MainController implements Initializable {
 		loader.setLocation(Paths.get(fxmlFolder, "Main.fxml").toUri().toURL());
 		Parent XD = loader.load();
 
-<<<<<<< HEAD
         // Show the scene containing the root layout.
         Scene scene = new Scene(XD);
         Stage stage = new Stage();
-        scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-=======
-		// Show the scene containing the root layout.
-		Scene scene = new Scene(XD);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
->>>>>>> 323fbd4200ace02ea34962b1541b8e51b84cf1ca
 	}
 
 	public void messageConsole(String message) {

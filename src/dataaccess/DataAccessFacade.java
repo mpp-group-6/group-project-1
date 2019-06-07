@@ -7,13 +7,11 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import business.Book;
 import business.LibraryMember;
 import business.User;
-import dataaccess.DataAccessFacade.StorageType;
 
 
 public class DataAccessFacade implements DataAccess {
@@ -22,19 +20,13 @@ public class DataAccessFacade implements DataAccess {
 		BOOKS, MEMBERS, USERS;
 	}
 	
-	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
-			+ "\\src\\dataaccess";
-	
-	//public static final String OUTPUT_DIR = Paths.get(System.getProperty("user.dir"), 
-	  //  "resources", "dataaccess", "storage").toString();
+	public static final String OUTPUT_DIR = Paths.get(System.getProperty("user.dir"), 
+	    "resources", "dataaccess", "storage").toString();
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 	
 	//implement: other save operations
 	public void saveNewMember(LibraryMember member) {
-		HashMap<String, LibraryMember> mems = readMemberMap();
-		String memberId = member.getMemberId();
-		mems.put(memberId, member);
-		saveToStorage(StorageType.MEMBERS, mems);	 
+		updateMember(member);	
 	}
 	
 	   //implement: other save operations
@@ -173,11 +165,7 @@ public class DataAccessFacade implements DataAccess {
         HashMap<String, Book> books = readBooksMap();
         String bookId = book.getIsbn();
         books.put(bookId, book);
-
-        loadBookMap(new ArrayList<>(books.values()));
-
         saveToStorage(StorageType.BOOKS, books);  
-
     }
 
     @Override
