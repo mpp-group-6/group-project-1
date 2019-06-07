@@ -165,7 +165,7 @@ public class MainController implements Initializable {
 
         Scene scene = new Scene(XD);
         Stage stage = new Stage();
-     scene.getStylesheets().add(Paths.get(cssFolder, "addMember.css").toString());
+     scene.getStylesheets().add(Paths.get(cssFolder, "addMember.css").toUri().toString());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
