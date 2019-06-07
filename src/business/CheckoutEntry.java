@@ -1,8 +1,8 @@
 package business;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 
@@ -34,6 +34,16 @@ final public class CheckoutEntry implements Serializable
     public BookCopy getCheckoutItem()
     {
         return checkoutItem;
+    }
+    
+    public String getDueDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return dueDate.format(formatter);
+    }
+    
+    public String getCheckoutDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return checkoutDate.format(formatter);
     }
 
     public ZonedDateTime getDueDate()

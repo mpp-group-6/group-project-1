@@ -17,7 +17,10 @@ public class CheckoutController {
 	    throws LibraryMemberNotFound, BookNotFound, BookCopyNotAvailable {
 	    LibraryMember member = LibraryMemberRepository.getMember(memberId);
 	    Book book = BookRepository.getBook(ISBN);
-	    return book.checkout(member);
+	    CheckoutRecord checkoutRecord = book.checkout(member);
+	    LibraryMemberRepository.updateMember(member);      // update the members object graph which includes checkoutrecord
+	    BookRepository.updateBook(book);
+	    return checkoutRecord;
 	}
 	
 	
