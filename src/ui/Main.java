@@ -108,7 +108,7 @@ public class Main extends BaseWindow implements Initializable {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		launch(args);
 	}
 

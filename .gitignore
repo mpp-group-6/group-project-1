@@ -209,4 +209,7 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+# group-project-files
+resources/dataaccess/storage/
+
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij

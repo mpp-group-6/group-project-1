@@ -20,7 +20,6 @@ import dataaccess.dao.LibraryMemberRepository;
 
 import java.util.List;
 import java.util.ResourceBundle;
-
 import business.value.Permission;
 
 import javafx.application.Platform;
@@ -32,7 +31,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -47,6 +45,7 @@ import ui.CheckoutWindow;
 
 
 public class MainController implements Initializable {
+    
 	public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), "resources", "fxml").toString();
 	public static MainController mainController;
 	@FXML
@@ -169,7 +168,7 @@ public class MainController implements Initializable {
 	private void checkOutBookMenuAction(ActionEvent event) {
 		labelMenu.setText("Check-Out Book");
 		System.out.println("Activation Check-Out Book Menu Action");
-		centralPane.getChildren().setAll(CheckoutWindow.getView());
+		centralPane.getChildren().setAll(CheckoutWindow.getView((viewPane)-> centralPane.getChildren().setAll(viewPane)));
 		messageConsole("#Activation Check-Out Book Menu Action");
 	}
 
@@ -207,15 +206,11 @@ public class MainController implements Initializable {
 	}
 
 	public void messageConsole(String message, String sumMessage) {
-		Date date = new Date();
 		Text text_1 = new Text("" + message + "; ");
 		text_1.setFill(Color.RED);
-		
 		text_1.setFont(Font.font("Verdana", 15));
-
 		Text text_2 = new Text(sumMessage + "\n");
 		text_2.setFill(Color.WHITESMOKE);
-		
 		text_2.setFont(Font.font("Verdana", 15));
 		System.out.println(message);
 		
