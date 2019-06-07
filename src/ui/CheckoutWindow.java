@@ -21,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import ui.objects.CheckoutRecordTable;
 
 public class CheckoutWindow
 {
@@ -54,15 +55,21 @@ public class CheckoutWindow
                 TableView table = new TableView<>();
                 vbox.setSpacing(5);
                 vbox.setPadding(new Insets(20));
-                TableColumn<String, CheckoutEntry> checkoutDate = new TableColumn<>("Checkout Date");
-                checkoutDate.setCellValueFactory(new PropertyValueFactory<>("checkoutDateString"));
-                TableColumn<String, CheckoutEntry> dueDate = new TableColumn<>("Due Date");
-                dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDateString"));
-                TableColumn<String, CheckoutEntry> checkoutItem = new TableColumn<>("Checkout Item");
-                checkoutItem.setCellValueFactory(new PropertyValueFactory<>("checkoutItem"));
-                table.getColumns().addAll(checkoutItem, checkoutDate, dueDate);
+                TableColumn<String, CheckoutRecordTable> checkoutDate = new TableColumn<>("Checkout Date");
+                checkoutDate.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
+                TableColumn<String, CheckoutRecordTable> dueDate = new TableColumn<>("Due Date");
+                dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+                TableColumn<String, CheckoutRecordTable> isbn = new TableColumn<>("isbn");
+                isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+                TableColumn<String, CheckoutRecordTable> bookTitle = new TableColumn<>("Book Title");
+                bookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
+                TableColumn<String, CheckoutRecordTable> authors = new TableColumn<>("Authors");
+                authors.setCellValueFactory(new PropertyValueFactory<>("Authors"));
+                TableColumn<String, CheckoutRecordTable> copiesLeft = new TableColumn<>("Copies Left");
+                copiesLeft.setCellValueFactory(new PropertyValueFactory<>("copiesLeft"));
+                table.getColumns().addAll(bookTitle, isbn, authors, copiesLeft, checkoutDate, dueDate);
                 table.setMinWidth(preferedWidth);
-                record.getCheckoutEntries().forEach(item->table.getItems().add(item));
+                record.getCheckoutEntries().forEach(item->table.getItems().add(new CheckoutRecordTable(item)));
                 vbox.getChildren().addAll(label, memberIdDisplay, table);
                 vbox.setMinWidth(preferedWidth);
                 stageChangerFunction.apply(vbox);

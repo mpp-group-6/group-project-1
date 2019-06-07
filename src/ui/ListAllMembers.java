@@ -18,7 +18,6 @@ import javax.naming.Context;
 import business.Address;
 import business.Book;
 import business.LibraryMember;
-import business.MemberTable;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import javafx.collections.FXCollections;
@@ -33,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import ui.objects.MemberTable;
 
 public class ListAllMembers extends BaseWindow implements Initializable{
 	//public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), 

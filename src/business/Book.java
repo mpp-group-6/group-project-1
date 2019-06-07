@@ -119,6 +119,10 @@ final public class Book implements Serializable {
 		throw new BookCopyDoesNotExist();
 	}
 	
+	public Long getNumberOfAvailableCopies() {
+	    return Arrays.asList(copies).stream().filter(copy->copy.isAvailable()).count();
+	}
+	
 	public int getMaxCheckoutLength() {
 		return maxCheckoutLength;
 	}
