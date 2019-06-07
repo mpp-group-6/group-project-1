@@ -153,14 +153,7 @@ public class MainController implements Initializable {
 				
 	}
 
-	@FXML
-	private void registerMembersMenuAction(ActionEvent event)throws IOException{
-		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "AddMember.fxml").toUri().toURL());
-		
-		
-		//centralPane = new AnchorPane();
-		centralPane.getChildren().setAll(pane);
-=======
+
 	private void listMembersMenuAction(ActionEvent event) {
 		labelMenu.setText("List Of Members recorded");
 		System.out.println("Activation view Members Menu Action");
