@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import business.LibraryMember;
 import dataaccess.DataAccess;
@@ -48,12 +49,15 @@ public class MainController implements Initializable {
 	Menu CheckOutItemMenu;
 	@FXML
 	AnchorPane centralPane;
+	@FXML
+	Label welcomeUserMessage;
 
 	public MainController() {
 		super();
 		memberItemMenu = new Menu();
 		BooksItemMenu = new Menu();
 		CheckOutItemMenu = new Menu();
+		welcomeUserMessage = new Label();
 	}
 
 	@Override
@@ -77,6 +81,11 @@ public class MainController implements Initializable {
 			BooksItemMenu.setVisible(true);
 			CheckOutItemMenu.setVisible(true);
 		}
+		
+		List<Permission> permissions = SystemController.currentUser.getAuthorization();
+		String permissionName = String.join(", ", permissions.stream().map(p->p.name()).collect(Collectors.toList()));
+		welcomeUserMessage.setText("Welcome "+SystemController.currentUser.getId() +" as "+ permissionName);
+		System.out.println(permissionName);
 	}
 
 	@FXML

@@ -29,7 +29,7 @@
             </Menu>
           <Menu fx:id="BooksItemMenu" mnemonicParsing="false" text="Books">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#newBookMenuAction" text="New Book" />
+                  <MenuItem mnemonicParsing="false" onAction="#newBookMenuAction" text="New Book" visible="false" />
                   <MenuItem mnemonicParsing="false" onAction="#newBookCopyMenuAction" text="New Book Copy" />
               <MenuItem mnemonicParsing="false" onAction="#listBookMenuAction" text="Collection of Books" />
             </items>
@@ -60,6 +60,13 @@
             </TextArea>
          </children>
       </Pane>
-      <AnchorPane fx:id="centralPane" layoutY="70.0" prefHeight="493.0" prefWidth="700.0" style="-fx-background-color: #ddd;" />
+      <AnchorPane fx:id="centralPane" layoutY="70.0" prefHeight="493.0" prefWidth="700.0" style="-fx-background-color: #ddd;">
+         <children>
+            <Label fx:id="welcomeUserMessage" layoutX="17.0" layoutY="192.0" prefHeight="47.0" prefWidth="666.0" style="-fx-alignment: center;" textAlignment="CENTER" textFill="#8f37c6">
+               <font>
+                  <Font name="Times New Roman" size="37.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
