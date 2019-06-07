@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,14 +11,16 @@
 <AnchorPane prefHeight="479.0" prefWidth="569.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.AddMemberController">
   <!-- TODO Add Nodes -->
   <children>
-    <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="451.0" prefWidth="541.0000999999975">
+    <BorderPane layoutX="23.0" layoutY="14.0" prefHeight="451.0" prefWidth="541.0000999999975">
       <bottom>
         <HBox id="paneBotton" alignment="CENTER" prefHeight="37.0" prefWidth="542.0" spacing="20.0">
           <children>
-            <Button fx:id="btn_backToMenu" mnemonicParsing="false" onAction="#backToMenu" prefWidth="119.0" text="&lt;= Back to Menu" />
             <Button id="btn_cancel" fx:id="btn_reset" mnemonicParsing="false" onAction="#resetField" prefWidth="108.90234375" text="reset" />
             <Button fx:id="btn_save" mnemonicParsing="false" onAction="#saveMember" prefWidth="119.0" text="Save member" />
           </children>
+          <padding>
+            <Insets left="50.0" />
+          </padding>
         </HBox>
       </bottom>
       <right>

@@ -164,7 +164,7 @@ public class MainController implements Initializable {
 
         Scene scene = new Scene(XD);
         Stage stage = new Stage();
-//        scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
+     scene.getStylesheets().add(getClass().getResource("addMember.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
