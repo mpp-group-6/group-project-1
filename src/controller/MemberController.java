@@ -34,10 +34,7 @@ public class MemberController implements Initializable {
 		Address adr=new Address(street,city,state,zip);
 		LibraryMember libMember=new LibraryMember(memberId,fName,lName,phone,adr);		
 		
-		//Saving the member
-		DataAccess da=new DataAccessFacade();
-		da.saveNewMember(libMember);
-		
+		LibraryMemberRepository.addMember(libMember);		
 		return returnedValue;
 	}
 
