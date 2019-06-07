@@ -210,6 +210,6 @@ gradle-app.setting
 **/build/
 
 # group-project-files
-resources/dataaccess/storage/
+resources/dataaccess/storage/*
 
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij
