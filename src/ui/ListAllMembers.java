@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ import javax.naming.Context;
 import business.Address;
 import business.Book;
 import business.LibraryMember;
+import business.MemberTable;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import javafx.collections.FXCollections;
@@ -37,58 +39,30 @@ public class ListAllMembers extends BaseWindow implements Initializable{
 	  //      "resources", "fxml").toString();
 	
 	@FXML
-	TableView<LibraryMember> tabMember;
+	TableView<MemberTable> tabMember;
 	
 	
 	@FXML
-	TableColumn<LibraryMember, String> memberId;	
+	TableColumn<MemberTable, String> memberId;	
 	@FXML
-	TableColumn<LibraryMember, String> firstNa;	
+	TableColumn<MemberTable, String> firstNa;	
 	@FXML
-	TableColumn<LibraryMember, String> lastNa;
+	TableColumn<MemberTable, String> lastNa;
 	@FXML
-	TableColumn<LibraryMember, String> t_phone;	
+	TableColumn<MemberTable, String> t_phone;	
 	@FXML
-	TableColumn<Address, String> t_street;
+	TableColumn<MemberTable, String> t_street;
+	
 	@FXML
-	TableColumn<Address, String> t_city;	
+	TableColumn<MemberTable, String> t_city;	
 	@FXML
-	TableColumn<Address, String> t_state;
+	TableColumn<MemberTable, String> t_state;
 	@FXML
-	TableColumn<Address, String> t_zip;
+	TableColumn<MemberTable, String> t_zip;
 	
 	
 	@FXML
 	Button btn_test;
-	
-	@FXML
-	public void testBotton() {
-		
-		
-		
-		DataAccess da=new DataAccessFacade();
-		HashMap<String,LibraryMember> hash=da.readMemberMap();
-		
-		List<LibraryMember> result2 = hash.values().stream()
-				.collect(Collectors.toList());
-		
-		//List<String> list = hash.values().stream()
-	      //        .map(b -> b.getFirstName()+":"+b.getLastName()+":"+b.getTelephone()+":"+b.getAddress().getStreet()+":"+b.getAddress().getCity()+":"+b.getAddress().getState()+":"+b.getAddress().getZip())
-	        //      .collect(Collectors.toList());
-		
-		firstNa.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("memberId"));
-		firstNa.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("FirstName"));
-		lastNa.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("LastName"));
-		t_phone.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("telephone"));
-		t_street.setCellValueFactory(new PropertyValueFactory<Address,String>("street"));
-		t_city.setCellValueFactory(new PropertyValueFactory<Address,String>("city"));
-		t_state.setCellValueFactory(new PropertyValueFactory<Address,String>("state"));
-		t_zip.setCellValueFactory(new PropertyValueFactory<Address,String>("zip"));
-		
-		tabMember.setItems(FXCollections.observableArrayList(result2));
-	
-	}
-	
 	
 	
 	private boolean isInitialized = false;
@@ -121,27 +95,32 @@ public class ListAllMembers extends BaseWindow implements Initializable{
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		t_street=new TableColumn<Address, String>();
+	
 		
 		DataAccess da=new DataAccessFacade();
 		HashMap<String,LibraryMember> hash=da.readMemberMap();
 		
-		List<LibraryMember> result2 = hash.values().stream()
-				.collect(Collectors.toList());
+		List<MemberTable> listMemberTab=new ArrayList<MemberTable>();
 		
-		//List<String> list = hash.values().stream()
-	      //        .map(b -> b.getFirstName()+":"+b.getLastName()+":"+b.getTelephone()+":"+b.getAddress().getStreet()+":"+b.getAddress().getCity()+":"+b.getAddress().getState()+":"+b.getAddress().getZip())
-	        //      .collect(Collectors.toList());
+		for(Entry<String, LibraryMember> mem: hash.entrySet()) {
+			String key=mem.getKey();
+			LibraryMember mb=mem.getValue();
+			Address ad=mb.getAddress();
+			MemberTable tabMember=new MemberTable(key,mb.getFirstName(),mb.getLastName(),mb.getTelephone(),ad.getStreet(),ad.getCity(),ad.getState(),ad.getZip());
+			listMemberTab.add(tabMember);
+		}
 		
-		firstNa.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("FirstName"));
-		lastNa.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("LastName"));
-		t_phone.setCellValueFactory(new PropertyValueFactory<LibraryMember,String>("telephone"));
-		t_street.setCellValueFactory(new PropertyValueFactory<Address,String>("street"));
-		t_city.setCellValueFactory(new PropertyValueFactory<Address,String>("city"));
-		t_state.setCellValueFactory(new PropertyValueFactory<Address,String>("state"));
-		t_zip.setCellValueFactory(new PropertyValueFactory<Address,String>("zip"));
 		
-		tabMember.setItems(FXCollections.observableArrayList(result2));
+		memberId.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("memberId"));
+		firstNa.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("FirstName"));
+		lastNa.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("LastName"));
+		t_phone.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("telephone"));
+		t_street.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("street"));
+		t_city.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("city"));
+		t_state.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("state"));
+		t_zip.setCellValueFactory(new PropertyValueFactory<MemberTable,String>("zip"));
+		
+		tabMember.setItems(FXCollections.observableArrayList(listMemberTab));
 		
 	}
 	
