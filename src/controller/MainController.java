@@ -78,6 +78,18 @@ public class MainController implements Initializable {
 	}
 
 	@FXML
+	private void newBookMenuAction(ActionEvent event) throws IOException {
+		labelMenu.setText("Creation of a new book");
+		messageConsole("#Activation new Book Menu Action");
+		System.out.println("#Activation new Book Menu Action");
+
+		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "AddBookForm.fxml").toUri().toURL());
+		
+		centralPane.getChildren().setAll(pane);
+		
+	}
+	
+	@FXML
 	private void newBookCopyMenuAction(ActionEvent event) throws IOException {
 		labelMenu.setText("Creation of a new copy of a book");
 		messageConsole("#Activation new Book Copy Menu Action");
