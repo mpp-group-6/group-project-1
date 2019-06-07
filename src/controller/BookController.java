@@ -20,6 +20,7 @@ import business.Author;
 import business.Book;
 import business.BookCopy;
 import dataaccess.DataAccessFacade;
+import dataaccess.dao.BookRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -153,12 +154,12 @@ public class BookController  implements Initializable{
 		MainController.mainController.messageConsole("#Save of The Copy of The Book : "+listBooks.getValue());
 		MainController.mainController.messageConsole("Num Copy : "+numCopyBook.getText());
 		String[] data = listBooks.getValue().trim().split(":");
-		Optional<Book> opBook = daFacade.readBooksMap().values().stream().filter(e -> e.getIsbn().equals(data[1])).findFirst();
-		Book book = opBook.get();
+		Book book = BookRepository.getBook(data[1]);
+		
 		for(Integer i=1; i<=Integer.parseInt(numCopyBook.getText());i++)
 			book.addCopy();
-
-		daFacade.saveBook(book);
+		
+		BookRepository.updateBook(book);
 		numCopyBook.setText("");
 		labelMessageNewBookCopyPage.setText("Message : New copies recorded");
 
