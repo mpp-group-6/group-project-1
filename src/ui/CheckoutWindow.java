@@ -65,9 +65,11 @@ public class CheckoutWindow
                 bookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
                 TableColumn<String, CheckoutRecordTable> authors = new TableColumn<>("Authors");
                 authors.setCellValueFactory(new PropertyValueFactory<>("Authors"));
-                TableColumn<String, CheckoutRecordTable> copiesLeft = new TableColumn<>("Copies Left");
-                copiesLeft.setCellValueFactory(new PropertyValueFactory<>("copiesLeft"));
-                table.getColumns().addAll(bookTitle, isbn, authors, copiesLeft, checkoutDate, dueDate);
+//                TableColumn<String, CheckoutRecordTable> copiesLeft = new TableColumn<>("Available Copies Remaining");
+//                copiesLeft.setCellValueFactory(new PropertyValueFactory<>("copiesLeft"));
+                TableColumn<String, CheckoutRecordTable> copyId = new TableColumn<>("Copy Id");
+                copyId.setCellValueFactory(new PropertyValueFactory<>("copyId"));
+                table.getColumns().addAll(bookTitle, isbn, authors, copyId, checkoutDate, dueDate);
                 table.setMinWidth(preferedWidth);
                 record.getCheckoutEntries().forEach(item->table.getItems().add(new CheckoutRecordTable(item)));
                 vbox.getChildren().addAll(label, memberIdDisplay, table);

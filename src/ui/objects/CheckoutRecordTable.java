@@ -9,6 +9,7 @@ public class CheckoutRecordTable {
 	private final String bookTitle;	
     private final String copiesLeft;
     private final String authors;
+    private final String copyId;
 	
 	public CheckoutRecordTable(CheckoutEntry entry) {
 		checkoutDate = entry.getCheckoutDateString();
@@ -17,6 +18,7 @@ public class CheckoutRecordTable {
         bookTitle = entry.getCheckoutItem().getBook().getTitle();
         copiesLeft = entry.getCheckoutItem().getBook().getNumberOfAvailableCopies().toString();
         authors = entry.getCheckoutItem().getBook().getAuthors().toString();
+        copyId = entry.getCheckoutItem().getCopyNum().toString();
 	}
 
     public String getCheckoutDate()
@@ -47,6 +49,11 @@ public class CheckoutRecordTable {
     public String getAuthors()
     {
         return authors;
+    }
+
+    public String getCopyId()
+    {
+        return copyId;
     }
 	
 
