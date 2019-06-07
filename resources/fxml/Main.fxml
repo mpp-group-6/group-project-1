@@ -21,19 +21,19 @@
               <MenuItem mnemonicParsing="false" onAction="#closeApllicationMenuAction" text="Close" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Members">
+            <Menu fx:id="memberItemMenu" mnemonicParsing="false" text="Members">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#registerMembersMenuAction" text="Register Member" />
                   <MenuItem mnemonicParsing="false" onAction="#listMembersMenuAction" text="List Members" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Books">
+          <Menu fx:id="BooksItemMenu" mnemonicParsing="false" text="Books">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#newBookCopyMenuAction" text="New Book Copy" />
               <MenuItem mnemonicParsing="false" onAction="#listBookMenuAction" text="Collection of Books" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="CheckOut Book">
+            <Menu fx:id="CheckOutItemMenu" mnemonicParsing="false" text="CheckOut Book">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#checkOutBookMenuAction" text="CheckOut" />
               </items>

@@ -25,14 +25,19 @@
                </font>
             </Label>
             <ComboBox fx:id="listBooks" onAction="#comboBookSelectAction" prefHeight="27.0" prefWidth="211.0" promptText="Select" GridPane.columnIndex="1" />
-            <Label prefHeight="21.0" prefWidth="155.0" text="Copy Number" GridPane.rowIndex="1">
+            <Label prefHeight="21.0" prefWidth="155.0" text="Number Copy " GridPane.rowIndex="1">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="numCopyBook" promptText="Copy number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="numCopyBook" promptText="Number Copy" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="269.0" layoutY="176.0" mnemonicParsing="false" onAction="#saveBookCopy" prefHeight="24.0" prefWidth="104.0" text="Save" />
+      <Label fx:id="labelMessageNewBookCopyPage" layoutX="89.0" layoutY="287.0" prefHeight="27.0" prefWidth="442.0" textFill="#f80000">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
