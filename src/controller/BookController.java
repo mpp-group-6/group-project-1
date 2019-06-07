@@ -6,11 +6,15 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import business.Author;
 import business.Book;
@@ -23,6 +27,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -57,7 +63,10 @@ public class BookController  implements Initializable{
 	TextField numCopyBook;
 	@FXML
 	Label labelMessageNewBookCopyPage;
-
+	@FXML
+	ListView listView;
+	@FXML
+	Label numCopyAvOfListBookPage;
 	DataAccessFacade daFacade = new DataAccessFacade();
 	public BookController() {
 		super();
@@ -69,9 +78,12 @@ public class BookController  implements Initializable{
 		
 		autorOfListBookPage = new Label();
 		numCopyOfListBookPage = new Label();
+		numCopyAvOfListBookPage = new Label();
 		
 		numCopyBook = new TextField();
 		labelMessageNewBookCopyPage = new Label();
+		
+		listView = new ListView();
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -106,15 +118,29 @@ public class BookController  implements Initializable{
 
 		    	autorOfListBookPage.setText(authors);
 		    	numCopyOfListBookPage.setText(String.valueOf(b.getNumCopies()));
+		    	
+		    	BookCopy[] copies =  b.getCopies();
+		    	int j=0;
+		    	for(int i=0; i<copies.length; i++) if (copies[i].isAvailable())j++;
+		    	numCopyAvOfListBookPage.setText(String.valueOf(j));
 		    }
 		});
 		
 		autorOfListBookPage.setText("");
 		numCopyOfListBookPage.setText("");
+		numCopyAvOfListBookPage.setText("");
 		
 		numCopyBook.setText("");
 		labelMessageNewBookCopyPage.setText("");
 		
+		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		Set<Author> authors = new HashSet<Author>();
+		result2.stream().forEach(book->authors.addAll(book.getAuthors()));
+		
+
+		listView.getItems().clear();
+		authors.stream().forEach(auth->listView.getItems().add(auth.getFirstName()+":"+auth.getLastName()));
+		//listView.setItems(obsrvList); 
 	}
 
 	@FXML
