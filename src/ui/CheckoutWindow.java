@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 public class CheckoutWindow
 {
     public static Pane getView() {
-        AnchorPane view = new AnchorPane();
         GridPane form = new GridPane();
         form.setVgap(20);
         form.setHgap(20);
