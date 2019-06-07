@@ -1,5 +1,6 @@
 package dataaccess.dao;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import business.LibraryMember;
@@ -9,13 +10,12 @@ import exception.LibraryMemberNotFound;
 
 public class LibraryMemberRepository
 {
-    final static DataAccess dbAccess;
-    
+    final static DataAccess dbAccess;    
     final static Map<String, LibraryMember> libraryMembersMap;
     
     static {
         dbAccess = new DataAccessFacade();
-        libraryMembersMap = dbAccess.readMemberMap();
+       libraryMembersMap = dbAccess.readMemberMap();
     }
     
     public static LibraryMember getMember(String memberId) throws LibraryMemberNotFound {
@@ -27,5 +27,14 @@ public class LibraryMemberRepository
     
     public static void updateMember(LibraryMember member) {
         dbAccess.updateMember(member);                     
+    }
+    
+    public static void addMember(LibraryMember member) {
+    	
+    	dbAccess.saveNewMember(member);
+    }
+    
+    public static HashMap<String,LibraryMember> readMembers() {
+    	return dbAccess.readMemberMap();
     }
 }

@@ -2,7 +2,6 @@ package ui;
 
 import java.nio.file.Paths;
 import controller.ControllerInterface;
-import controller.SystemController;
 import exception.LoginException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -75,12 +74,12 @@ public class LoginWindow extends Stage implements LibWindow {
         messageBox.getChildren().add(messageBar);;
         grid.add(messageBox, 1, 6);
         
-        loginBtn.setOnAction(new EventHandler<ActionEvent>() {
+        /*loginBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
         		try {
-        			ControllerInterface c = new SystemController();
-        			c.login(userTextField.getText().trim(), pwBox.getText().trim());
+        			//ControllerInterface c = new SystemController();
+        			//c.login(userTextField.getText().trim(), pwBox.getText().trim());
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Login successful");
         		} catch(LoginException ex) {
@@ -89,7 +88,7 @@ public class LoginWindow extends Stage implements LibWindow {
         		}
         	   
         	}
-        });
+        });*/
 
         Button backBtn = new Button("<= Back to Main");
         backBtn.setOnAction(new EventHandler<ActionEvent>() {

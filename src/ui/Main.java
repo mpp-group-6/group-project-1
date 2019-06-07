@@ -40,9 +40,6 @@ public class Main extends BaseWindow {
 			//Paths.get(fxmlFolder, "Login.fxml").toString()
 			Scene scene = new Scene(root);
 			
-//			button = new Button("Login");
-//			button.setOnAction(e -> System.out.println("Login  "));
-			
 			//scene.getStylesheets().add(getClass().getResource("resources/bootstrap3.css").toExternalForm());
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
