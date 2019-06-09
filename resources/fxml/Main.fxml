@@ -30,7 +30,7 @@
           <Menu fx:id="BooksItemMenu" mnemonicParsing="false" text="Books">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#newBookMenuAction" text="New Book" />
-                  <MenuItem mnemonicParsing="false" onAction="#newBookCopyMenuAction" text="New Book Copy" />
+                  <MenuItem mnemonicParsing="false" onAction="#newBookCopyMenuAction" text="Add Book Copy" />
               <MenuItem mnemonicParsing="false" onAction="#listBookMenuAction" text="Collection of Books" />
             </items>
           </Menu>
