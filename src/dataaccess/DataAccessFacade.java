@@ -64,6 +64,12 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, User> readDataMap() {
+		//Returns a Map with name/value pairs being
+		//   userId -> User
+		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
+	}
 	
 	/////load methods - these place test data into the storage area
 	///// - used just once at startup  
