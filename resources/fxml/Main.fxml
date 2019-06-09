@@ -29,7 +29,7 @@
             </Menu>
           <Menu fx:id="BooksItemMenu" mnemonicParsing="false" text="Books">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#newBookMenuAction" text="New Book" visible="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#newBookMenuAction" text="New Book" />
                   <MenuItem mnemonicParsing="false" onAction="#newBookCopyMenuAction" text="New Book Copy" />
               <MenuItem mnemonicParsing="false" onAction="#listBookMenuAction" text="Collection of Books" />
             </items>
@@ -37,6 +37,7 @@
             <Menu fx:id="CheckOutItemMenu" mnemonicParsing="false" text="CheckOut Book">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#checkOutBookMenuAction" text="CheckOut" />
+                <MenuItem mnemonicParsing="false" onAction="#searchOverDueBookMenuAction" text="Overdue Book copies" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">

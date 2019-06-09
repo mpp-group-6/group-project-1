@@ -12,6 +12,7 @@ import java.util.List;
 
 import business.Author;
 import business.Book;
+import business.CheckoutRecord;
 import business.LibraryMember;
 import business.User;
 
@@ -19,7 +20,7 @@ import business.User;
 public class DataAccessFacade implements DataAccess {
 	
 	enum StorageType {
-		BOOKS, MEMBERS, USERS;
+		BOOKS, MEMBERS, USERS, CHECKOUT;
 	}
 
 	public static final String OUTPUT_DIR =  Paths.get(System.getProperty("user.dir"), 
@@ -63,6 +64,12 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, User> readDataMap() {
+		//Returns a Map with name/value pairs being
+		//   userId -> User
+		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
+	}
 	
 	/////load methods - these place test data into the storage area
 	///// - used just once at startup  
@@ -84,6 +91,12 @@ public class DataAccessFacade implements DataAccess {
 		memberList.forEach(member -> members.put(member.getMemberId(), member));
 		saveToStorage(StorageType.MEMBERS, members);
 	}
+	
+    static void loadCheckout(List<LibraryMember> memberList) {
+        HashMap<String, CheckoutRecord> checkoutRecords = new HashMap<String, CheckoutRecord>();
+        memberList.forEach(member -> checkoutRecords.put(member.getMemberId(), member.getCheckoutRecord()));
+        saveToStorage(StorageType.CHECKOUT, checkoutRecords);
+    }
 	
 	static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;
@@ -183,6 +196,27 @@ public class DataAccessFacade implements DataAccess {
         HashMap<String, User> users = readUserMap();
         users.put(user.getId(), user);
         saveToStorage(StorageType.USERS, users); 
+    }
+    
+    @SuppressWarnings("unchecked")
+    public  HashMap<String,CheckoutRecord> readCheckoutRecordMap() {
+        //Returns a Map with name/value pairs being
+        //   isbn -> Book
+        return (HashMap<String, CheckoutRecord>) readFromStorage(StorageType.CHECKOUT);
+    }
+    
+    @Override
+    public void saveCheckoutRecord(CheckoutRecord record)
+    {
+        updateCheckoutRecord(record);
+    }
+
+    @Override
+    public void updateCheckoutRecord(CheckoutRecord record)
+    {
+        HashMap<String, CheckoutRecord> records = readCheckoutRecordMap();
+        records.put(record.getMember().getMemberId(), record);
+        saveToStorage(StorageType.CHECKOUT, records); 
     }
 	
 }

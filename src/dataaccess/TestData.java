@@ -6,6 +6,7 @@ import java.util.List;
 import business.Address;
 import business.Author;
 import business.Book;
+import business.CheckoutRecord;
 import business.LibraryMember;
 import business.User;
 import business.value.Permission;
@@ -48,7 +49,8 @@ public class TestData {
 			add(new Book("28-12331", "Antartica", 7, Arrays.asList(allAuthors.get(2))));
 			add(new Book("99-22223", "Thinking Java", 21, Arrays.asList(allAuthors.get(3))));
 			add(new Book("48-56882", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));
-			
+			 // next book's maxCheckoutLength is intentionally made -7 to trigger past due date
+            add(new Book("48-56888", "Trigger past due date book", -7, Arrays.asList(allAuthors.get(4))));    
 		}
 	};
 	
@@ -73,6 +75,7 @@ public class TestData {
 		System.out.println(da.readMemberMap());
 		System.out.println(da.readUserMap());
 	}
+	
 	///create books
 	public void bookData() {
 		allBooks.get(0).addCopy();
@@ -81,14 +84,16 @@ public class TestData {
 		allBooks.get(3).addCopy();
 		allBooks.get(2).addCopy();
 		allBooks.get(2).addCopy();
+        allBooks.get(2).addCopy();
+        allBooks.get(2).addCopy();
+        allBooks.get(4).addCopy();
+        allBooks.get(4).addCopy();
 		DataAccessFacade.loadBookMap(allBooks);
 	}
 	
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
 	}
-	
-	
 	
 	//create library members
 	
@@ -108,7 +113,7 @@ public class TestData {
         members.add(libraryMember);
 		
 		DataAccessFacade.loadMemberMap(members);
-		
+		DataAccessFacade.loadCheckout(members);
 		
 	}
 		

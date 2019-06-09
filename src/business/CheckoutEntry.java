@@ -20,14 +20,17 @@ final public class CheckoutEntry implements Serializable
     
     private final BookCopy checkoutItem;
     
+    private final LibraryMember member;
+    
     private final ZonedDateTime dueDate;
     
     private final ZonedDateTime checkoutDate;
     
-    CheckoutEntry(BookCopy checkoutItem, ZonedDateTime dueDate, ZonedDateTime checkoutDate) {
+    CheckoutEntry(BookCopy checkoutItem, LibraryMember member, ZonedDateTime dueDate, ZonedDateTime checkoutDate) {
         this.checkoutDate = checkoutDate;
         this.checkoutItem = checkoutItem;
         this.dueDate = dueDate;
+        this.member = member;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -59,6 +62,11 @@ final public class CheckoutEntry implements Serializable
     public String getId()
     {
         return id;
+    }
+
+    public LibraryMember getMember()
+    {
+        return member;
     }
     
     

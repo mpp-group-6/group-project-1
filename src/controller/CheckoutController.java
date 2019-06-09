@@ -2,10 +2,15 @@ package controller;
 
 import business.CheckoutRecord;
 import business.LibraryMember;
+
+import java.util.List;
+
 import business.Book;
+import business.CheckoutEntry;
 import dataaccess.dao.LibraryMemberRepository;
 import dataaccess.exception.BookNotFound;
 import dataaccess.dao.BookRepository;
+import dataaccess.dao.CheckoutRecordRepository;
 import exception.BookCopyNotAvailable;
 import exception.LibraryMemberNotFound;
 
@@ -18,11 +23,13 @@ public class CheckoutController {
 	    LibraryMember member = LibraryMemberRepository.getMember(memberId);
 	    Book book = BookRepository.getBook(ISBN);
 	    CheckoutRecord checkoutRecord = book.checkout(member);
-	    LibraryMemberRepository.updateMember(member);      // update the members object graph which includes checkoutrecord
-	    BookRepository.updateBook(book);
+	    LibraryMemberRepository.updateMember(member);
+	    CheckoutRecordRepository.updateRecord(checkoutRecord);
+        BookRepository.updateBook(book);
 	    return checkoutRecord;
 	}
 	
+<<<<<<< HEAD
 	public CheckoutRecord listCheckoutRecordForMember(String memberId) 
 		    throws LibraryMemberNotFound {
 		    LibraryMember member = LibraryMemberRepository.getMember(memberId);
@@ -33,6 +40,11 @@ public class CheckoutController {
 		}
 	
 	
+=======
+	public List<CheckoutEntry> getOverdueBooks(String ISBN) throws BookNotFound {
+	    return CheckoutRecordRepository.getOverdueCopies(BookRepository.getBook(ISBN).getIsbn());      // getBook required for validation
+	}
+>>>>>>> 3f528baf12ed4bc02314e7fc7bf063a0aa77a551
 	
 	
 }
