@@ -37,6 +37,7 @@
             <Menu fx:id="CheckOutItemMenu" mnemonicParsing="false" text="CheckOut Book">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#checkOutBookMenuAction" text="CheckOut" />
+                <MenuItem mnemonicParsing="false" onAction="#searchOverDueBookMenuAction" text="Overdue Book copies" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">

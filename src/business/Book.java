@@ -136,9 +136,6 @@ final public class Book implements Serializable {
         bookCopy.changeAvailability();
 	    return checkoutRecord;
 	}
-
-	
-	
 	
 	
 }

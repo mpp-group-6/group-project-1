@@ -170,8 +170,18 @@ public class MainController implements Initializable {
 	private void checkOutBookMenuAction(ActionEvent event) {
 		labelMenu.setText("Check-Out Book");
 		System.out.println("Activation Check-Out Book Menu Action");
-		centralPane.getChildren().setAll(CheckoutWindow.getView((viewPane)-> centralPane.getChildren().setAll(viewPane)));
+		centralPane.getChildren().setAll(CheckoutWindow
+		    .getCheckoutView((viewPane)-> centralPane.getChildren().setAll(viewPane),
+		        (message)-> { messageConsole(message); return null; }));
 		messageConsole("#Activation Check-Out Book Menu Action");
+	}
+	
+	@FXML
+	private void searchOverDueBookMenuAction(ActionEvent event) {
+        System.out.println("In Overdue Book Menu Action");
+        centralPane.getChildren().setAll(CheckoutWindow.getOverDueBookView((viewPane)-> centralPane.getChildren().setAll(viewPane),
+            (message)-> { messageConsole(message); return null; }));
+        messageConsole("#Activation Overdue Book Menu Action");
 	}
 
 	@FXML
