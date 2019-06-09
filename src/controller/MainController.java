@@ -86,6 +86,7 @@ public class MainController implements Initializable {
 		String permissionName = String.join(", ", permissions.stream().map(p->p.name()).collect(Collectors.toList()));
 		welcomeUserMessage.setText("Welcome "+SystemController.currentUser.getId() +" as "+ permissionName);
 		System.out.println(permissionName);
+		//System.out.println(SystemController.currentUser);
 	}
 
 	@FXML

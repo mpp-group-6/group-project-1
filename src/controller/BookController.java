@@ -26,6 +26,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -39,7 +41,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author pogoromuald
  *
  */
-public class BookController  implements Initializable{
+public class BookController implements Initializable {
 	@FXML
 	Book book;
 	@FXML
@@ -52,13 +54,13 @@ public class BookController  implements Initializable{
 	TableColumn<Book, String> titleNameColum;
 	@FXML
 	TableColumn<Book, String> isbnNameColum;
-//	@FXML
-//	TableColumn<Book, String> autorNameColum;
-//	@FXML
-//	TableColumn<Book, String> copyNameColum;
+	// @FXML
+	// TableColumn<Book, String> autorNameColum;
+	// @FXML
+	// TableColumn<Book, String> copyNameColum;
 	@FXML
 	Label autorOfListBookPage;
-	@FXML 
+	@FXML
 	Label numCopyOfListBookPage;
 	@FXML
 	TextField numCopyBook;
@@ -67,108 +69,178 @@ public class BookController  implements Initializable{
 	@FXML
 	ListView listView;
 	@FXML
+	TextField titleNewBook;
+	@FXML
+	TextField isbnNewBook;
+	@FXML
+	TextField maxLenNewBook;
+	@FXML
+	TextField numbCopyNewBook;
+	@FXML
 	Label numCopyAvOfListBookPage;
+	@FXML
+	Label messageNewBookResult;
 	DataAccessFacade daFacade = new DataAccessFacade();
+
 	public BookController() {
 		super();
-		listBooks = new ComboBox<>(); 
-		
+		listBooks = new ComboBox<>();
+
 		tableBook = new TableView<>();
 		titleNameColum = new TableColumn<>();
 		isbnNameColum = new TableColumn<>();
-		
+
 		autorOfListBookPage = new Label();
 		numCopyOfListBookPage = new Label();
 		numCopyAvOfListBookPage = new Label();
-		
+
 		numCopyBook = new TextField();
 		labelMessageNewBookCopyPage = new Label();
-		
+
 		listView = new ListView();
+		titleNewBook = new TextField();
+		isbnNewBook = new TextField();
+		maxLenNewBook = new TextField();
+		numbCopyNewBook = new TextField();
 	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
-		HashMap<String,Book> hmapBook =  daFacade.readBooksMap();
-		List<Book> result2 = hmapBook.values().stream()
+
+		HashMap<String, Book> hmapBook = daFacade.readBooksMap();
+		List<Book> result2 = hmapBook.values().stream().collect(Collectors.toList());
+
+		List<String> list = hmapBook.values().stream().map(b -> b.getTitle() + ":" + b.getIsbn())
 				.collect(Collectors.toList());
-		
-		
-		List<String> list = 
-				hmapBook.values().stream()
-	              .map(b -> b.getTitle()+":"+b.getIsbn())
-	              .collect(Collectors.toList());
-		
+
 		listBooks.getItems().clear();
 		listBooks.getItems().addAll(list);
-		
-		titleNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("title"));
-		isbnNameColum.setCellValueFactory(new PropertyValueFactory<Book,String>("isbn"));
+
+		titleNameColum.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
+		isbnNameColum.setCellValueFactory(new PropertyValueFactory<Book, String>("isbn"));
 
 		tableBook.setItems(FXCollections.observableArrayList(result2));
 		tableBook.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-		    if (newSelection != null) {
-		    	Book b = tableBook.getSelectionModel().getSelectedItem();
-		    	MainController.mainController.messageConsole("#Selection book : "+b.getTitle());
-		    	List<Author> listAuthor = b.getAuthors();
-		    	String authors = "";
-		    	for (Author author : listAuthor) {
-		    		authors +=author.getFirstName()+" "+author.getLastName()+" ";
+			if (newSelection != null) {
+				Book b = tableBook.getSelectionModel().getSelectedItem();
+				MainController.mainController.messageConsole("#Selection book : " + b.getTitle());
+				List<Author> listAuthor = b.getAuthors();
+				String authors = "";
+				for (Author author : listAuthor) {
+					authors += author.getFirstName() + " " + author.getLastName() + " ";
 				}
 
-		    	autorOfListBookPage.setText(authors);
-		    	numCopyOfListBookPage.setText(String.valueOf(b.getNumCopies()));
-		    	
-		    	BookCopy[] copies =  b.getCopies();
-		    	int j=0;
-		    	for(int i=0; i<copies.length; i++) if (copies[i].isAvailable())j++;
-		    	numCopyAvOfListBookPage.setText(String.valueOf(j));
-		    }
+				autorOfListBookPage.setText(authors);
+				numCopyOfListBookPage.setText(String.valueOf(b.getNumCopies()));
+
+				BookCopy[] copies = b.getCopies();
+				int j = 0;
+				System.out.println(copies.length);
+				for (int i = 0; i < copies.length; i++) {
+					if (copies[i].isAvailable())
+						j++;
+				}
+				numCopyAvOfListBookPage.setText(String.valueOf(j));
+			}
 		});
-		
+
 		autorOfListBookPage.setText("");
 		numCopyOfListBookPage.setText("");
 		numCopyAvOfListBookPage.setText("");
-		
+
 		numCopyBook.setText("");
 		labelMessageNewBookCopyPage.setText("");
-		
-		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 		Set<Author> authors = new HashSet<Author>();
-		result2.stream().forEach(book->authors.addAll(book.getAuthors()));
-		
+		result2.stream().forEach(book -> authors.addAll(book.getAuthors()));
 
 		listView.getItems().clear();
-		authors.stream().forEach(auth->listView.getItems().add(auth.getFirstName()+":"+auth.getLastName()));
-		//listView.setItems(obsrvList); 
+		authors.stream().forEach(auth -> listView.getItems().add(auth.getFirstName() + ":" + auth.getLastName()));
+		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		titleNewBook.setText("");
+		isbnNewBook.setText("");
+		maxLenNewBook.setText("");
+		numbCopyNewBook.setText("");
+		// listView.setItems(obsrvList);
+
+		messageNewBookResult = new Label();
 	}
 
 	@FXML
-	private void comboBookSelectAction(ActionEvent event){
-		MainController.mainController.messageConsole("#Book Selected : ",listBooks.getValue());
+	private void comboBookSelectAction(ActionEvent event) {
+		MainController.mainController.messageConsole("#Book Selected : ", listBooks.getValue());
 	}
-	
+
+	@FXML
+	private void newButtonAction(ActionEvent event) {
+		List<String> selectedAuthorNames = (List<String>) listView.getSelectionModel().getSelectedItems().stream()
+				.collect(Collectors.toList());
+		HashMap<String, Book> hmapBook = daFacade.readBooksMap();
+
+		List<Book> result2 = hmapBook.values().stream().collect(Collectors.toList());
+		if (!(isbnNewBook.getText().trim().isEmpty() || titleNewBook.getText().trim().isEmpty()
+				|| maxLenNewBook.getText().trim().isEmpty() || numbCopyNewBook.getText().trim().isEmpty()
+				|| selectedAuthorNames.size() == 0)) {
+
+			Set<Author> authors = new HashSet<Author>();
+			result2.stream().forEach(book -> authors.addAll(book.getAuthors()));
+			List<Author> listAuthors = new ArrayList<>();
+			for (String authorName : selectedAuthorNames) {
+				listAuthors.add(authors.stream()
+						.filter(auth -> authorName.equals(auth.getFirstName() + ":" + auth.getLastName())).findFirst()
+						.get());
+			}
+			Book newBook = new Book(isbnNewBook.getText(), titleNewBook.getText(),
+					Integer.valueOf(maxLenNewBook.getText()), listAuthors, Integer.valueOf(numbCopyNewBook.getText()));
+			daFacade.saveBook(newBook);
+
+			listView.getItems().clear();
+			authors.stream().forEach(auth -> listView.getItems().add(auth.getFirstName() + ":" + auth.getLastName()));
+			listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+			titleNewBook.setText("");
+			isbnNewBook.setText("");
+			maxLenNewBook.setText("");
+			numbCopyNewBook.setText("");
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmation Dialog");
+			alert.setHeaderText("Book well saved"); 
+
+			alert.showAndWait();
+			MainController.mainController.messageConsole("Book well saved: "+newBook.getTitle());
+			messageNewBookResult.setText("Book well saved");
+		} else {
+			messageNewBookResult.setText("Fill all the informations"); 
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Ooops, there was an error!");
+			alert.setContentText("Required information missing");
+			MainController.mainController.messageConsole("Required information missing");
+			alert.showAndWait();
+		}
+	}
+
 	@FXML
 	private void saveBookCopy(ActionEvent event) throws Exception {
-		MainController.mainController.messageConsole("#Save of The Copy of The Book : "+listBooks.getValue());
-		MainController.mainController.messageConsole("Num Copy : "+numCopyBook.getText());
+		MainController.mainController.messageConsole("#Save of The Copy of The Book : " + listBooks.getValue());
+		MainController.mainController.messageConsole("Num Copy : " + numCopyBook.getText());
 		String[] data = listBooks.getValue().trim().split(":");
 		Book book = BookRepository.getBook(data[1]);
-		
-		for(Integer i=1; i<=Integer.parseInt(numCopyBook.getText());i++)
+
+		for (Integer i = 1; i <= Integer.parseInt(numCopyBook.getText()); i++)
 			book.addCopy();
-		
+
 		BookRepository.updateBook(book);
 		numCopyBook.setText("");
 		labelMessageNewBookCopyPage.setText("Message : New copies recorded");
 
 	}
-	
+
 	@FXML
-    private void buttonListAction(ActionEvent event) {
-	    MainController.mainController.messageConsole("#Save of The Copy of The Book : ");
-	    
+	private void buttonListAction(ActionEvent event) {
+		MainController.mainController.messageConsole("#Save of The Copy of The Book : ");
+
 	}
 
 }
