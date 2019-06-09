@@ -31,4 +31,27 @@ public class CheckoutRecord implements Serializable
     {
         return member;
     }
+    
+    public String toString() {
+    	String returnVal="";
+    	String checkoutDate="";
+    	String dueDate="";
+    	String isbn = "";
+    	String bookTitle="";	
+       
+    	
+    	for(CheckoutEntry entry: checkoutEntries) {
+    		checkoutDate = entry.getCheckoutDateString();
+    		dueDate  = entry.getDueDateString();
+    		isbn = entry.getCheckoutItem().getBook().getIsbn();
+            bookTitle = entry.getCheckoutItem().getBook().getTitle();
+            returnVal+="Book "+bookTitle+" isbn : "+isbn+"==="+"Checkout date : "+checkoutDate+"===="+"Due date: "+dueDate+"RC";
+            //copiesLeft = entry.getCheckoutItem().getBook().
+            //authors = entry.getCheckoutItem().getBook().getAuthors().toString();
+    	}
+    	
+    	
+    	
+    	return returnVal;
+    }
 }

@@ -23,5 +23,16 @@ public class CheckoutController {
 	    return checkoutRecord;
 	}
 	
+	public CheckoutRecord listCheckoutRecordForMember(String memberId) 
+		    throws LibraryMemberNotFound {
+		    LibraryMember member = LibraryMemberRepository.getMember(memberId);
+		    
+		    CheckoutRecord checkoutRecord=member.getCheckoutRecord();
+		
+		    return checkoutRecord;
+		}
+	
+	
+	
 	
 }

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import business.LibraryMember;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
+import dataaccess.dao.LibraryMemberRepository;
 import business.value.Permission;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -138,22 +139,30 @@ public class MainController implements Initializable {
 	}
 	
 	@FXML
-	private void listMembersMenuAction(ActionEvent event) throws IOException{
-		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "ListAllMembers.fxml").toUri().toURL());
+	private void listMembersMenuAction2(ActionEvent event) throws IOException{
+		/*AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "ListAllMembers.fxml").toUri().toURL());
 		
 		centralPane.getChildren().setAll(pane);
 		
 		labelMenu.setText("List of all members");
 		
-		DataAccess da=new DataAccessFacade();
-		HashMap<String,LibraryMember> hash=da.readMemberMap();
+		HashMap<String,LibraryMember> hash=LibraryMemberRepository.readMembers();
 		for(Entry ent : hash.entrySet()) {
 			LibraryMember mb=(LibraryMember) ent.getValue();
 			messageConsole(mb.toString());
 			//System.out.println(mb);
-		}
+		}*/
+		
 	
 				
+	}
+	
+	@FXML
+	public void listMembersMenuAction(ActionEvent event) throws MalformedURLException, IOException {
+		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "ListCheckRecordForMember.fxml").toUri().toURL());
+		centralPane.getChildren().setAll(pane);
+		
+		labelMenu.setText("List of all checkout records for member");
 	}
 
 	@FXML
@@ -200,6 +209,7 @@ public class MainController implements Initializable {
 		text_1.setFont(Font.font("Verdana", 15));
 		System.out.println(message);
 		logArea.setText("" + message + "\n" + logArea.getText());
+		
 
 	}
 

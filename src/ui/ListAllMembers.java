@@ -20,6 +20,7 @@ import business.Book;
 import business.LibraryMember;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
+import dataaccess.dao.LibraryMemberRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -97,8 +98,7 @@ public class ListAllMembers extends BaseWindow implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
 		
-		DataAccess da=new DataAccessFacade();
-		HashMap<String,LibraryMember> hash=da.readMemberMap();
+		HashMap<String,LibraryMember> hash=LibraryMemberRepository.readMembers();
 		
 		List<MemberTable> listMemberTab=new ArrayList<MemberTable>();
 		
