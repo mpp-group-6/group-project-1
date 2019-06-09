@@ -29,9 +29,22 @@ public class CheckoutController {
 	    return checkoutRecord;
 	}
 	
+<<<<<<< HEAD
+	public CheckoutRecord listCheckoutRecordForMember(String memberId) 
+		    throws LibraryMemberNotFound {
+		    LibraryMember member = LibraryMemberRepository.getMember(memberId);
+		    
+		    CheckoutRecord checkoutRecord=member.getCheckoutRecord();
+		
+		    return checkoutRecord;
+		}
+	
+	
+=======
 	public List<CheckoutEntry> getOverdueBooks(String ISBN) throws BookNotFound {
 	    return CheckoutRecordRepository.getOverdueCopies(BookRepository.getBook(ISBN).getIsbn());      // getBook required for validation
 	}
+>>>>>>> 3f528baf12ed4bc02314e7fc7bf063a0aa77a551
 	
 	
 }

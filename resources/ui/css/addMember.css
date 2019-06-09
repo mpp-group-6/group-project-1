@@ -10,6 +10,15 @@
     -fx-border-color: #dfdfdf;
 }
 
+#hBoxMemberSearch {
+    -fx-border-color: #9f9f9f;
+}
+
+#ErrorNoRecord{
+-fx-font-size: 15px;
+-fx-font-family: "Arial Black";
+-fx-fill: #990000;
+}
 #title{
 -fx-font-size: 30px;
 -fx-font-family: "Arial Black";
