@@ -51,8 +51,6 @@ public class Main extends BaseWindow implements Initializable {
 
 			Parent root = FXMLLoader.load(Paths.get(fxmlFolder, "Login.fxml").toUri().toURL());
 			Scene scene = new Scene(root);
-
-
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
 
@@ -73,8 +71,6 @@ public class Main extends BaseWindow implements Initializable {
 		    c.login(userName.getText().trim(), password.getText().trim());
 		    Node node = (Node) event.getSource();
             node.getScene().getWindow().hide();
-            MainController controller = new MainController();
-            controller.loadView();
 		}
 		catch(InvalidCredentials ex) {
 		    messageError.setText("Invalid credentials");

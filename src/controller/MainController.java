@@ -151,7 +151,6 @@ public class MainController implements Initializable {
 		for(Entry ent : hash.entrySet()) {
 			LibraryMember mb=(LibraryMember) ent.getValue();
 			messageConsole(mb.toString());
-			//System.out.println(mb);
 		}
 	
 				

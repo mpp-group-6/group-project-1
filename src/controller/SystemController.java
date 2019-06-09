@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import business.User;
@@ -13,9 +14,12 @@ import dataaccess.exception.UserNotFound;
 public class SystemController implements ControllerInterface {
 	public static List<Permission> currentAuth = null;
 	public static User currentUser = null;
-	public void login(String userId, String password) throws UserNotFound, InvalidCredentials{
+	
+	public void login(String userId, String password) throws UserNotFound, InvalidCredentials, IOException{
 	    currentUser = UserRepository.getuser(userId, password);
         currentAuth = currentUser.getAuthorization();
+        MainController controller = new MainController();
+        controller.loadView();
 	}
 	
 	@Override
