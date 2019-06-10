@@ -1,17 +1,11 @@
 package controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import business.Address;
-import business.Book;
 import business.LibraryMember;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
 import dataaccess.dao.LibraryMemberRepository;
 import javafx.fxml.Initializable;
 
@@ -39,10 +33,7 @@ public class MemberController implements Initializable {
 	}
 
 	public String getMemberId() {
-		int min=1;
-		int max=2000;
-		int id=(int)(Math.random()*((max-min)+1))+min;		
-		return ""+id;
+	    return UUID.randomUUID().toString();
 	}
 	
 	
