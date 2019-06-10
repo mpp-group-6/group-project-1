@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import business.Author;
 import business.Book;
 import business.BookCopy;
@@ -173,10 +176,22 @@ public class BookController implements Initializable {
 		HashMap<String, Book> hmapBook = daFacade.readBooksMap();
 
 		List<Book> result2 = hmapBook.values().stream().collect(Collectors.toList());
+		if(numbCopyNewBook.getText().trim().matches("[0-9]+") == false 
+				|| maxLenNewBook.getText().trim().matches("[0-9]+") == false) {
+			messageNewBookResult.setText("Integer value required"); 
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setContentText("Number of copies and max checkout length shoud be numeric");
+			MainController.mainController.messageConsole("Required information missing");
+			alert.showAndWait();
+			return;
+		}
+	 
 		if (!(isbnNewBook.getText().trim().isEmpty() || titleNewBook.getText().trim().isEmpty()
 				|| maxLenNewBook.getText().trim().isEmpty() || numbCopyNewBook.getText().trim().isEmpty()
 				|| selectedAuthorNames.size() == 0)) {
-
+			
+				
 			Set<Author> authors = new HashSet<Author>();
 			result2.stream().forEach(book -> authors.addAll(book.getAuthors()));
 			List<Author> listAuthors = new ArrayList<>();
