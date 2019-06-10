@@ -18,8 +18,8 @@ public class SystemController implements ControllerInterface {
 	public void login(String userId, String password) throws UserNotFound, InvalidCredentials, IOException{
 	    currentUser = UserRepository.getuser(userId, password);
         currentAuth = currentUser.getAuthorization();
-        MainController controller = new MainController();
-        controller.loadView();
+        MainController mainController = new MainController();
+        mainController.loadView();
 	}
 	
 	@Override
