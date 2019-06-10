@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import dataaccess.dao.LibraryMemberRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ui.Start;
 
 public class AddMemberController implements Initializable {
 	
@@ -107,16 +105,7 @@ public class AddMemberController implements Initializable {
 		alert.getDialogPane().setContent(new HBox(new Label(message)));//(new ScrollPane(new TextArea(sw.toString())));
 		alert.showAndWait();
 	}
-    
-    
-   
-    
-    @FXML
-    public void backToMenu() {
-    	Start.hideAllWindows();
-		Start.primStage().show();
-    }
-
+ 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
