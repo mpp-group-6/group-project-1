@@ -25,6 +25,7 @@
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#registerMembersMenuAction" text="Register Member" />
                   <MenuItem mnemonicParsing="false" onAction="#listMembersMenuAction" text="List Members" />
+                  <MenuItem mnemonicParsing="false" onAction="#listChekoutRecordsForMember" text="List member checkout records" />
               </items>
             </Menu>
           <Menu fx:id="BooksItemMenu" mnemonicParsing="false" text="Books">

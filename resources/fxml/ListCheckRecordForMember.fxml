@@ -20,7 +20,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="0.0" layoutY="53.0" prefHeight="52.0" prefWidth="683.0">
               <children>
-                <Button fx:id="btn_listCheckoutRecordForMember" mnemonicParsing="false" onAction="#getCheckRecordForMember" prefWidth="135.0" text="List checkout records" />
+                <Button fx:id="btn_listCheckoutRecordForMember" mnemonicParsing="false" onAction="#printCheckoutRecordsForMember" prefWidth="135.0" text="List checkout records" />
               </children>
             </HBox>
           </children>

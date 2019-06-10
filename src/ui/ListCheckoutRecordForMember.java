@@ -56,6 +56,7 @@ public class ListCheckoutRecordForMember extends BaseWindow implements Initializ
 	
 	@FXML
 	public void printCheckoutRecordsForMember() throws LibraryMemberNotFound {
+		
 		tableListRec.getItems().clear();
 		Label lab=new Label("There are no checkout records for that member");
 		lab.setId("ErrorNoRecord");

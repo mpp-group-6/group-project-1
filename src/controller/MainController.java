@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import business.LibraryMember;
 import business.value.Permission;
+import dataaccess.dao.LibraryMemberRepository;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -133,8 +137,8 @@ public class MainController implements Initializable {
 	}
 	
 	@FXML
-	private void listMembersMenuAction2(ActionEvent event) throws IOException{
-		/*AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "ListAllMembers.fxml").toUri().toURL());
+	private void listMembersMenuAction(ActionEvent event) throws IOException{
+		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "ListAllMembers.fxml").toUri().toURL());
 		
 		centralPane.getChildren().setAll(pane);
 		
@@ -145,14 +149,14 @@ public class MainController implements Initializable {
 			LibraryMember mb=(LibraryMember) ent.getValue();
 			messageConsole(mb.toString());
 			//System.out.println(mb);
-		}*/
+		}
 		
 	
 				
 	}
 	
 	@FXML
-	public void listMembersMenuAction(ActionEvent event) throws MalformedURLException, IOException {
+	public void listChekoutRecordsForMember(ActionEvent event) throws  IOException {
 		AnchorPane pane = FXMLLoader.load(Paths.get(fxmlFolder, "ListCheckRecordForMember.fxml").toUri().toURL());
 		centralPane.getChildren().setAll(pane);
 		
