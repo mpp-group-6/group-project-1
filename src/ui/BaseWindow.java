@@ -7,5 +7,5 @@ import javafx.application.Application;
 public abstract class BaseWindow extends Application
 {
     public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), 
-        "resources", "fxml").toString();
+        "src", "resources", "fxml").toString();
 }

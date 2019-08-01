@@ -53,7 +53,7 @@ public class Main extends BaseWindow implements Initializable {
 			Scene scene = new Scene(root);
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
-
+			    
 			primaryStage.show();
 			
 		} catch (Exception e) {

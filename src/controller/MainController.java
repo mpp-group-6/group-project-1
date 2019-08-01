@@ -33,8 +33,8 @@ import ui.CheckoutWindow;
 
 public class MainController implements Initializable {
     
-	public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), "resources", "fxml").toString();
-	public static final String cssFolder = Paths.get(System.getProperty("user.dir"), "resources", "ui", "css").toString();
+	public static final String fxmlFolder = Paths.get(System.getProperty("user.dir"), "src", "resources", "fxml").toString();
+	public static final String cssFolder = Paths.get(System.getProperty("user.dir"), "src", "resources", "ui", "css").toString();
 	public static MainController mainController;
 	@FXML
 	Label labelMenu;
@@ -179,15 +179,16 @@ public class MainController implements Initializable {
         System.out.println("Activation Check-Out Book Menu Action");
         centralPane.getChildren().setAll(CheckoutWindow
             .getCheckoutView((viewPane)-> centralPane.getChildren().setAll(viewPane),
-                (message)-> { messageConsole(message); return null; }));
+                (message)-> messageConsole(message)));
         messageConsole("#Activation Check-Out Book Menu Action");
     }
     
     @FXML
     private void searchOverDueBookMenuAction(ActionEvent event) {
         System.out.println("In Overdue Book Menu Action");
-        centralPane.getChildren().setAll(CheckoutWindow.getOverDueBookView((viewPane)-> centralPane.getChildren().setAll(viewPane),
-            (message)-> { messageConsole(message); return null; }));
+        centralPane.getChildren().setAll(CheckoutWindow.getOverDueBookView((viewPane)
+            -> centralPane.getChildren().setAll(viewPane),
+            (message)-> messageConsole(message)));
         messageConsole("#Activation Overdue Book Menu Action");
     }
 

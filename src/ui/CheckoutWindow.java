@@ -3,6 +3,7 @@ package ui;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import business.CheckoutRecord;
 import business.CheckoutEntry;
@@ -30,7 +31,7 @@ public class CheckoutWindow
 {
     private static Double preferedWidth = 660.0;
     
-    public static Pane getOverDueBookView(Function<Pane, Boolean> rendererFunction, Function<String, Void> auditLogFunction) {
+    public static Pane getOverDueBookView(Consumer<Pane> rendererFunction, Consumer<String> auditLogFunction) {
         GridPane form = new GridPane();
         form.setVgap(20);
         form.setHgap(20);
@@ -47,7 +48,7 @@ public class CheckoutWindow
         
     }
     
-    public static Pane getCheckoutView(Function<Pane, Boolean> rendererFunction, Function<String, Void> auditLogFunction) {
+    public static Pane getCheckoutView(Consumer<Pane> rendererFunction, Consumer<String> auditLogFunction) {
         GridPane form = new GridPane();
         form.setVgap(20);
         form.setHgap(20);
@@ -69,7 +70,7 @@ public class CheckoutWindow
         
     }
     
-    private static void onCheckOut(Function<Pane, Boolean> rendererFunction, Function<String, Void> auditLogFunction, String memberId, String isbn) {
+    private static void onCheckOut(Consumer<Pane> rendererFunction, Consumer<String> auditLogFunction, String memberId, String isbn) {
         CheckoutController checkoutController = new CheckoutController();
         try
         {
@@ -100,8 +101,8 @@ public class CheckoutWindow
             record.getCheckoutEntries().forEach(item->table.getItems().add(new CheckoutRecordTable(item)));
             vbox.getChildren().addAll(label, memberIdDisplay, table);
             vbox.setMinWidth(preferedWidth);
-            auditLogFunction.apply(String.format("Book ISBN: %s checked out for Member: %s", isbn, memberId));
-            rendererFunction.apply(vbox);
+            auditLogFunction.accept(String.format("Book ISBN: %s checked out for Member: %s", isbn, memberId));
+            rendererFunction.accept(vbox);
         }
         catch (LibraryMemberNotFound e)
         {
@@ -124,7 +125,7 @@ public class CheckoutWindow
     }
     
     @SuppressWarnings("unchecked")
-    private static void onSearchOverdueBook(Function<Pane, Boolean> rendererFunction, Function<String, Void> auditLogFunction, String isbn) {
+    private static void onSearchOverdueBook(Consumer<Pane> rendererFunction, Consumer<String> auditLogFunction, String isbn) {
         CheckoutController checkoutController = new CheckoutController();
         try
         {
@@ -157,7 +158,7 @@ public class CheckoutWindow
             checkoutEntries.forEach(item->table.getItems().add(new OverdueBookCopyTable(item)));
             vbox.getChildren().addAll(memberIdDisplay, table, printButton);
             vbox.setMinWidth(preferedWidth);
-            rendererFunction.apply(vbox);
+            rendererFunction.accept(vbox);
         }
         catch (BookNotFound e)
         {
@@ -167,9 +168,9 @@ public class CheckoutWindow
         }
     }
     
-    private static void onPrintOverdueBookButton(Function<Pane, Boolean> rendererFunction, Function<String, Void> auditLogFunction, List<CheckoutEntry> entries) {
+    private static void onPrintOverdueBookButton(Consumer<Pane> rendererFunction, Consumer<String> auditLogFunction, List<CheckoutEntry> entries) {
         List<String> printMessage = new ArrayList<String>(); 
-        auditLogFunction.apply("Printing book....");
+        auditLogFunction.accept("Printing book....");
         printMessage.add("--------------------------------------------");
         printMessage.add("                 Overdue Books              ");
         printMessage.add("--------------------------------------------");
@@ -184,7 +185,7 @@ public class CheckoutWindow
             printMessage.add("Due Date: " + entry.getDueDate());
             printMessage.add("--------------------------------------------");
         });
-        auditLogFunction.apply(String.join("\n", printMessage));
+        auditLogFunction.accept(String.join("\n", printMessage));
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText("Done Printing");
         alert.show();
